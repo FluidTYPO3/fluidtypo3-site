@@ -6,6 +6,8 @@
   "config": {
     "sort-packages": true,
     "allow-plugins": {
+      "helhum/dotenv-connector": true,
+      "php-http/discovery": true,
       "typo3/class-alias-loader": true,
       "typo3/cms-composer-installers": true
     }
@@ -21,11 +23,15 @@
     }
   ],
   "require": {
+    "php": "^8.5",
     "apache-solr-for-typo3/solr": "^14.0@dev",
     "fluidtypo3/fluidshare": "@dev",
     "fluidtypo3/fluidtypo3org": "dev-main",
     "fluidtypo3/flux": "^12.0",
     "fluidtypo3/vhs": "^8.0",
+    "helhum/dotenv-connector": "^3.2",
+    "helhum/typo3-console": "^9.0",
+    "sentry/sentry": "^4.29",
     "typo3/cms-backend": "^14.3",
     "typo3/cms-core": "^14.3",
     "typo3/cms-extbase": "^14.3",
@@ -44,5 +50,9 @@
       "npm install",
       "npm run build"
     ]
+  },
+  "require-dev": {
+    "busy-noggin/developer-mcp": "@dev",
+    "deployer/deployer": "^8.0"
   }
 }

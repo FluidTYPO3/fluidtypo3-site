@@ -3,3 +3,5 @@ public/_assets/
 var/
 vendor/
 public/
+
+.env
