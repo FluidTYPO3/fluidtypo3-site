@@ -10,7 +10,7 @@ require 'recipe/common.php';
 
 // Project configuration
 set('application', 'fluidtypo3.org');
-set('repository', 'ssh://git@github.com:FluidTYPO3/fluidtypo3-site.git');
+set('repository', 'ssh://git@github.com/FluidTYPO3/fluidtypo3-site.git');
 set('git_tty', false);
 
 // Use git submodules
@@ -233,13 +233,6 @@ task('typo3:database_updateschema', function () {
     });
 });
 
-desc('Normalize database collations');
-task('typo3:database_normalize_collations', function () {
-    within('{{release_path}}', function () {
-        run('{{bin/php}} vendor/bin/typo3 pl:database:normalize-collations --apply --no-interaction');
-    });
-});
-
 desc('Flush TYPO3 caches');
 task('typo3:cache_flush', function () {
     within('{{release_path}}', function () {
@@ -259,10 +252,10 @@ desc('Deploy the project');
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
-    'typo3:fix_permissions',
     'typo3:database_updateschema',
     'typo3:database_normalize_collations',
     'deploy:publish',
+    'typo3:fix_permissions',
 ]);
 
 // Rollback message
