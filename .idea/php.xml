@@ -133,6 +133,7 @@
       <path value="$PROJECT_DIR$/vendor/opis/uri" />
       <path value="$PROJECT_DIR$/vendor/opis/json-schema" />
       <path value="$PROJECT_DIR$/vendor/busy-noggin/developer-mcp" />
+      <path value="$PROJECT_DIR$/vendor/networkteam/sentry-client" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

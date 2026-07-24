@@ -41,6 +41,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mcp/sdk" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/schema" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/utils" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/networkteam/sentry-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opis/json-schema" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opis/string" />
