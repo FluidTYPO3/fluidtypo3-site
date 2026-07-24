@@ -2,7 +2,7 @@ base: 'https://fluidtypo3.org/'
 baseVariants:
   -
     base: 'https://legacy.fluidtypo3.org/'
-    condition: 'applicationContext == "Staging"'
+    condition: 'applicationContext == "Production/Staging"'
   -
     base: 'https://fluidtypo3-site.ddev.site/'
     condition: 'applicationContext == "Development"'
