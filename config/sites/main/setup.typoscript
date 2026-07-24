@@ -4,3 +4,5 @@ plugin.tx_fluidshare_display.persistence.storagePid = 2
 plugin.tx_fluidshare_detail.persistence.storagePid = 2
 plugin.tx_fluidshare_filter.persistence.storagePid = 2
 plugin.tx_fluidshare_submit.persistence.storagePid = 2
+
+plugin.tx_solr.view.partialRootPaths.20 = EXT:fluidtypo3org/Resources/Private/Partials/Solr/
