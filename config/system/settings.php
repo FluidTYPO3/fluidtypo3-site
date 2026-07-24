@@ -36,6 +36,14 @@ return [
             'loginLogo' => '',
             'loginLogoAlt' => '',
         ],
+        'developer_mcp' => [
+            'endpoint' => [
+                'allowProduction' => '0',
+            ],
+            'phpShellTool' => [
+                'enabled' => '1',
+            ],
+        ],
         'flux' => [
             'autoload' => '1',
             'customLayoutSelector' => '0',
@@ -51,6 +59,16 @@ return [
         ],
         'scheduler' => [
             'maxLifetime' => '1440',
+        ],
+        'sentry_client' => [
+            'disableDatabaseLogging' => '0',
+            'dsn' => false,
+            'ignoreMessageRegex' => '',
+            'logWriterComponentIgnorelist' => '',
+            'release' => '',
+            'reportDatabaseConnectionErrors' => '0',
+            'reportUserInformation' => 'userid',
+            'showEventId' => '1',
         ],
         'solr' => [
             'allowSelfSignedCertificates' => '0',
