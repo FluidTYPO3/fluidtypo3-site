@@ -81,6 +81,22 @@
             return;
         }
 
+        const historyBackLink = target.closest('[data-history-back]');
+        if (
+            historyBackLink instanceof HTMLAnchorElement
+            && event instanceof MouseEvent
+            && event.button === 0
+            && !event.altKey
+            && !event.ctrlKey
+            && !event.metaKey
+            && !event.shiftKey
+            && window.history.length > 1
+        ) {
+            event.preventDefault();
+            window.history.back();
+            return;
+        }
+
         const button = target.closest('[data-theme-toggle]');
         if (!(button instanceof HTMLButtonElement)) {
             return;
@@ -94,6 +110,15 @@
 
     document.addEventListener('change', (event) => {
         const selector = event.target;
+        if (
+            selector instanceof HTMLSelectElement
+            && selector.matches('[data-filter-tag], [data-filter-extension]')
+            && selector.form?.matches('[data-library-filter]')
+        ) {
+            selector.form.requestSubmit();
+            return;
+        }
+
         if (
             selector instanceof HTMLSelectElement
             && selector.matches('[data-documentation-selector]')

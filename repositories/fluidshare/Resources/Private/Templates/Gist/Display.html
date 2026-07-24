@@ -3,10 +3,10 @@
 
 <f:section name="Main">
 	<article class="library-detail">
-		<f:link.page pageUid="6" class="library-back-link">
+		<a href="{f:uri.page(pageUid: 6)}" class="library-back-link" data-history-back>
 			<span aria-hidden="true">&larr;</span>
 			Back to all examples
-		</f:link.page>
+		</a>
 		<header class="library-detail-header">
 			<p class="library-eyebrow mb-2">Code example</p>
 			<h2 class="library-detail-title">{gist.title}</h2>
