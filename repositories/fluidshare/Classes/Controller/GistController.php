@@ -105,11 +105,6 @@ class GistController extends ActionController {
 	 */
 	public function displayAction(Gist $gist): ResponseInterface
 	{
-		if ($this->isFilterContentElement()) {
-			$this->assignFilterVariables();
-			return $this->htmlResponse();
-		}
-
 		$response = $this->fetchGistDataAndLoadStylesheet($gist);
 		$this->view->assign('gist', $gist);
 		$this->view->assign('response', $response);
@@ -124,9 +119,9 @@ class GistController extends ActionController {
 		$this->view->assign('gist', $gist);
 		$this->view->assign('tags', $this->tagRepository->findAll());
 		$this->view->assign('extensions', $this->extensionRepository->findAll());
-		if (NULL !== $this->request->getOriginalRequest()) {
-			$this->view->assign('submission', $this->request->getOriginalRequest()->getArgument('gist'));
-		}
+		#if (NULL !== $this->request-) {
+	#		$this->view->assign('submission', $this->request->getOriginalRequest()->getArgument('gist'));
+	#	}
 		return $this->htmlResponse();
 	}
 

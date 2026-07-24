@@ -1,65 +1,41 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
-<table class="table table-bordered">
-	<tr>
-		<td>
-			<v:l>text.description</v:l>
-		</td>
-		<td>
-			{response.json.description -> v:or(alternative: '<i>{v:l(key: \'text.noDescription\')}</i>')}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<v:l>text.author</v:l>
-		</td>
-		<td>
-			<f:render partial="AuthorLink" arguments="{_all}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<v:l>text.created</v:l>
-		</td>
-		<td>
-			{response.json.created_at}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<v:l>flux.tx_fluidshare_domain_model_gist.fields.extensions</v:l>
-		</td>
-		<td>
-			<ol>
-				<f:for each="{gist.extensions}" as="extension">
-					<li>{extension.extensionName}</li>
-				</f:for>
-			</ol>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<v:l>flux.tx_fluidshare_domain_model_gist.fields.tags</v:l>
-		</td>
-		<td>
-			<ol>
-				<f:for each="{gist.tags}" as="tag">
-					<li>{tag.name}</li>
-				</f:for>
-			</ol>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<v:l>text.files</v:l>
-		</td>
-		<td>
-			<ol>
-				<f:for each="{response.json.files}" as="file">
-					<li>
-						<a href="{gist.url}/raw/{file}">{file}</a>
-					</li>
-				</f:for>
-			</ol>
-		</td>
-	</tr>
-</table>
+<dl class="library-meta-grid">
+	<div class="library-meta-item library-meta-item-wide">
+		<dt><v:l>text.description</v:l></dt>
+		<dd>
+			{response.json.description -> v:or(alternative: '<span class="text-body-secondary">{v:l(key: \'text.noDescription\')}</span>')}
+		</dd>
+	</div>
+	<div class="library-meta-item">
+		<dt><v:l>text.author</v:l></dt>
+		<dd><f:render partial="AuthorLink" arguments="{_all}" /></dd>
+	</div>
+	<div class="library-meta-item">
+		<dt><v:l>text.created</v:l></dt>
+		<dd>{response.json.created_at}</dd>
+	</div>
+	<div class="library-meta-item">
+		<dt><v:l>flux.tx_fluidshare_domain_model_gist.fields.extensions</v:l></dt>
+		<dd class="library-meta-values">
+			<f:for each="{gist.extensions}" as="extension">
+				<span class="library-chip library-chip-extension">{extension.extensionName}</span>
+			</f:for>
+		</dd>
+	</div>
+	<div class="library-meta-item">
+		<dt><v:l>flux.tx_fluidshare_domain_model_gist.fields.tags</v:l></dt>
+		<dd class="library-meta-values">
+			<f:for each="{gist.tags}" as="tag">
+				<span class="library-chip">{tag.name}</span>
+			</f:for>
+		</dd>
+	</div>
+	<div class="library-meta-item library-meta-item-wide">
+		<dt><v:l>text.files</v:l></dt>
+		<dd class="library-file-list">
+			<f:for each="{response.json.files}" as="file">
+				<a href="{gist.url}/raw/{file}">{file}</a>
+			</f:for>
+		</dd>
+	</div>
+</dl>

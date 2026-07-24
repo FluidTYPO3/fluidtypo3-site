@@ -20,7 +20,7 @@ return array (
 		),
 	'interface' =>
 		array (
-			'showRecordFieldList' => 'confirmed,extensions,summary,tags,title,url',
+			'showRecordFieldList' => 'confirmed,extensions,summary,tags,title,slug,url',
 		),
 	'columns' =>
 		array (
@@ -166,6 +166,28 @@ return array (
 						),
 					'displayCond' => NULL,
 				),
+			'slug' =>
+				array (
+					'label' => 'LLL:EXT:fluidshare/Resources/Private/Language/locallang.xlf:flux.tx_fluidshare_domain_model_gist.fields.slug',
+					'exclude' => 1,
+					'config' =>
+						array (
+							'type' => 'slug',
+							'size' => 100,
+							'generatorOptions' =>
+								array (
+									'fields' =>
+										array (
+											'title',
+										),
+									'fieldSeparator' => '-',
+									'prefixParentPageSlug' => false,
+								),
+							'fallbackCharacter' => '-',
+							'eval' => 'uniqueInSite',
+							'default' => '',
+						),
+				),
 			'url' =>
 				array (
 					'label' => 'LLL:EXT:fluidshare/Resources/Private/Language/locallang.xlf:flux.tx_fluidshare_domain_model_gist.fields.url',
@@ -195,7 +217,7 @@ return array (
 		array (
 			0 =>
 				array (
-					'showitem' => '--div--;LLL:EXT:fluidshare/Resources/Private/Language/locallang.xlf:flux.tx_fluidshare_domain_model_gist.sheets.options, confirmed, extensions, summary, tags, title, url',
+					'showitem' => '--div--;LLL:EXT:fluidshare/Resources/Private/Language/locallang.xlf:flux.tx_fluidshare_domain_model_gist.sheets.options, confirmed, extensions, summary, tags, title, slug, url',
 				),
 		),
 );

@@ -36,6 +36,45 @@
 
     applyTheme(document.documentElement.getAttribute('data-bs-theme') || 'light');
 
+    const searchInput = document.querySelector('.site-search-input');
+    const searchTerm = new URLSearchParams(window.location.search).get('tx_solr[q]');
+    if (searchInput instanceof HTMLInputElement && searchTerm !== null) {
+        searchInput.value = searchTerm;
+    }
+
+    document.addEventListener('submit', (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement) || !form.matches('[data-library-filter]')) {
+            return;
+        }
+
+        const tagSelect = form.querySelector('[data-filter-tag]');
+        const extensionSelect = form.querySelector('[data-filter-extension]');
+        if (!(tagSelect instanceof HTMLSelectElement) || !(extensionSelect instanceof HTMLSelectElement)) {
+            return;
+        }
+
+        const routeSegments = [];
+        const tag = tagSelect.selectedOptions[0]?.dataset.routeValue;
+        const extension = extensionSelect.selectedOptions[0]?.dataset.routeValue;
+
+        if (tag) {
+            routeSegments.push(form.dataset.tagSegment || 'context', tag);
+        }
+        if (extension) {
+            routeSegments.push(form.dataset.extensionSegment || 'extension', extension);
+        }
+
+        const target = new URL(form.action, window.location.href);
+        const basePath = target.pathname.replace(/\/+$/, '');
+        target.pathname = [basePath, ...routeSegments.map(encodeURIComponent)].join('/') || '/';
+        target.search = '';
+        target.hash = '';
+
+        event.preventDefault();
+        window.location.assign(target.toString());
+    });
+
     document.addEventListener('click', (event) => {
         const target = event.target;
         if (!(target instanceof Element)) {

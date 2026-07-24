@@ -8,6 +8,7 @@ baseVariants:
     condition: 'applicationContext == "Development"'
 dependencies:
   - typo3/fluid-styled-content
+  - apache-solr-for-typo3/solr
 languages:
   -
     title: English
@@ -17,8 +18,60 @@ languages:
     locale: en_US.UTF-8
     navigationTitle: English
     flag: us
+    solr_core_read: core_en
 rootPageId: 1
 routeEnhancers:
+  FluidshareList:
+    type: Extbase
+    limitToPages:
+      - 6
+    extension: Fluidshare
+    plugin: Display
+    defaultController: 'Gist::list'
+    routes:
+      -
+        routePath: '/context/{tag}/extension/{extension}'
+        _controller: 'Gist::list'
+        _arguments:
+          tag: tag
+          extension: extension
+      -
+        routePath: '/context/{tag}'
+        _controller: 'Gist::list'
+        _arguments:
+          tag: tag
+      -
+        routePath: '/extension/{extension}'
+        _controller: 'Gist::list'
+        _arguments:
+          extension: extension
+    aspects:
+      tag:
+        type: PersistedAliasMapper
+        tableName: tx_fluidshare_domain_model_tag
+        routeFieldName: name
+      extension:
+        type: PersistedAliasMapper
+        tableName: tx_fluidshare_domain_model_extension
+        routeFieldName: extension_key
+  FluidshareDetail:
+    type: Extbase
+    limitToPages:
+      - 9
+    extension: Fluidshare
+    plugin: Detail
+    defaultController: 'Gist::display'
+    routes:
+      -
+        routePath: '/{gist}'
+        _controller: 'Gist::display'
+        _arguments:
+          gist: gist
+    aspects:
+      gist:
+        type: PersistedAliasMapper
+        tableName: tx_fluidshare_domain_model_gist
+        routeFieldName: slug
   Documentation:
     type: Extbase
     extension: Fluidtypo3org
@@ -55,9 +108,9 @@ routeEnhancers:
       segment3:
         type: SafeDocumentationSegmentMapper
 solr_enabled_read: true
-solr_host_read: solr
+solr_host_read: '%env(TYPO3_SOLR_HOST)%'
 solr_path_read: /
 solr_port_read: '8983'
-solr_scheme_read: ''
+solr_scheme_read: http
 solr_use_write_connection: false
 websiteTitle: ''

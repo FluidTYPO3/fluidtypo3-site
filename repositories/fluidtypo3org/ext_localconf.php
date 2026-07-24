@@ -32,3 +32,4 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['SafeDocumentationSegme
     \FluidTYPO3\FluidTYPO3Org\Integration\Routing\SafeDocumentationSegmentMapper::class;
 
 \FluidTYPO3\Flux\Core::registerProviderExtensionKey('FluidTYPO3.Fluidtypo3org', 'Page');
+\FluidTYPO3\Flux\Core::registerProviderExtensionKey('FluidTYPO3.Fluidtypo3org', 'Content');

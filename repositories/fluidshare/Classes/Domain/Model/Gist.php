@@ -14,6 +14,11 @@ class Gist extends AbstractEntity {
 	protected $title;
 
 	/**
+	 * @var string
+	 */
+	protected $slug = '';
+
+	/**
 	 * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
 	 * @TYPO3\CMS\Extbase\Annotation\Validate("RegularExpression", options={"regularExpression": "/^https\:\/\/gist\.github\.com\//"})
 	 * @var string
@@ -63,6 +68,21 @@ class Gist extends AbstractEntity {
 	 */
 	public function getTitle() {
 		return $this->title;
+	}
+
+	/**
+	 * @param string $slug
+	 * @return void
+	 */
+	public function setSlug($slug) {
+		$this->slug = $slug;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSlug() {
+		return $this->slug;
 	}
 
 	/**

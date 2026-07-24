@@ -16,8 +16,8 @@
 <f:section name="Main">
     <section class="front-page-hero">
         <div class="container">
-            <div class="row align-items-center gy-4 gx-lg-5">
-                <div class="col-12 col-lg-7">
+            <div class="front-page-hero-grid">
+                <div class="front-page-logo-stage">
                     <div class="front-page-logo" role="img" aria-label="FluidTYPO3">
                         <img
                             class="front-page-logo-image front-page-logo-image-light"
@@ -37,27 +37,36 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-5">
-                    <div class="front-page-hero-copy">
-                        <h1 class="front-page-title">Productive Templating</h1>
-                        <p class="front-page-lead">
-                            <strong>Fluid Powered TYPO3</strong> is a family of TYPO3 extensions designed to boost
-                            productivity and flexibility when creating CMS templates.
-                        </p>
-                        <div class="front-page-actions d-flex flex-wrap gap-3">
-                            <button
-                                class="btn btn-success btn-lg"
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#features-video"
-                            >
+                <div class="front-page-hero-copy">
+                    <p class="front-page-eyebrow">Templating for TYPO3</p>
+                    <h1 class="front-page-title">Productive Templating</h1>
+                    <p class="front-page-lead">
+                        <strong>Fluid Powered TYPO3</strong> is a family of TYPO3 extensions designed to boost
+                        productivity and flexibility when creating CMS templates.
+                    </p>
+                    <div class="front-page-actions">
+                        <button
+                            class="front-page-action front-page-action-features"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#features-video"
+                        >
+                            <span class="front-page-action-symbol" aria-hidden="true">
                                 <svg class="front-page-action-icon" viewBox="0 0 16 16" aria-hidden="true">
                                     <path d="M6.25 4.7v6.6L11.5 8 6.25 4.7Z" fill="currentColor" />
                                     <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" />
                                 </svg>
-                                Features
-                            </button>
-                            <f:link.page class="btn btn-primary btn-lg" pageUid="2">
+                            </span>
+                            <span class="front-page-action-copy">
+                                <span class="front-page-action-kicker">Watch</span>
+                                <span class="front-page-action-label">Features</span>
+                            </span>
+                            <svg class="front-page-action-arrow" viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <f:link.page class="front-page-action front-page-action-documentation" pageUid="3">
+                            <span class="front-page-action-symbol" aria-hidden="true">
                                 <svg class="front-page-action-icon" viewBox="0 0 16 16" aria-hidden="true">
                                     <path
                                         d="M2.25 2.5h4.1c.9 0 1.65.75 1.65 1.65v9.35c0-.9-.75-1.65-1.65-1.65h-4.1V2.5Zm11.5 0h-4.1c-.9 0-1.65.75-1.65 1.65v9.35c0-.9.75-1.65 1.65-1.65h4.1V2.5Z"
@@ -66,9 +75,15 @@
                                         stroke-linejoin="round"
                                     />
                                 </svg>
-                                Documentation
-                            </f:link.page>
-                        </div>
+                            </span>
+                            <span class="front-page-action-copy">
+                                <span class="front-page-action-kicker">Explore</span>
+                                <span class="front-page-action-label">Documentation</span>
+                            </span>
+                            <svg class="front-page-action-arrow" viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </f:link.page>
                     </div>
                 </div>
             </div>

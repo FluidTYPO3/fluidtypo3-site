@@ -7,51 +7,71 @@
 			<f:render partial="Filter" arguments="{_all}" />
 		</f:then>
 		<f:else>
-			<table class="table table-responsive">
-				<thead>
-					<tr>
-						<th class="col-sm-6">
-							<v:l>flux.tx_fluidshare_domain_model_gist.fields.title</v:l>
-						</th>
-						<th class="col-sm-6">
-							<v:l>flux.tx_fluidshare_domain_model_gist.fields.summary</v:l>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
+			<div class="library-listing">
+				<div class="library-listing-heading">
+					<div>
+						<p class="library-eyebrow mb-2">Community library</p>
+						<h2 class="h3 mb-2">Reusable Fluid and TYPO3 examples</h2>
+						<p class="mb-0 text-body-secondary">
+							Browse practical patterns shared by the FluidTYPO3 community.
+						</p>
+					</div>
+					<span class="library-result-count">
+						<f:count subject="{gists}" /> examples
+					</span>
+				</div>
+				<f:if condition="{gists}">
+					<f:then>
+						<div class="library-example-grid">
 					<f:for each="{gists}" as="gist" iteration="iteration">
-						<tr>
-							<td>
-								<f:link.action action="display" arguments="{gist: gist.uid}">
-									<h4>
-										<small>
-											<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-										</small>
+								<article class="library-example-card">
+									<div class="library-example-card-body">
+										<h3 class="h5 library-example-title">
+								<f:link.action action="display" controller="Gist" extensionName="Fluidshare" pluginName="Detail" pageUid="9" arguments="{gist: gist.uid}">
 										{gist.title}
-									</h4>
 								</f:link.action>
+										</h3>
+										<div class="library-example-summary">
+											{gist.summary -> f:format.html()}
+										</div>
+									</div>
+									<div class="library-example-meta">
 								<f:if condition="{gist.tags}">
-									<p>
-										<span class="glyphicon glyphicon-tags text-muted" style="margin-left: 0.6em; margin-right: 0.4em;"></span>
+											<div class="library-example-facets" aria-label="Contexts">
+												<span class="library-facet-label">Context</span>
 										<f:for each="{gist.tags}" as="tag" iteration="iterator">
-											<f:link.action action="list" arguments="{tag: tag.uid}">{tag.name}</f:link.action><f:if condition="{iterator.isLast}" else=", " />
+													<f:link.action action="list" controller="Gist" extensionName="Fluidshare" pluginName="Display" pageUid="6" arguments="{tag: tag.uid}" class="library-chip">
+														{tag.name}
+													</f:link.action>
 										</f:for>
-									</p>
+											</div>
 								</f:if>
 								<f:if condition="{gist.extensions}">
-									<p>
-										<span class="glyphicon glyphicon-folder-close text-muted" style="margin-left: 0.6em; margin-right: 0.4em;"></span>
+											<div class="library-example-facets" aria-label="Extensions">
+												<span class="library-facet-label">Extension</span>
 										<f:for each="{gist.extensions}" as="extension" iteration="iterator">
-											<f:link.action action="list" arguments="{extension: extension.uid}">{extension.extensionName}</f:link.action><f:if condition="{iterator.isLast}" else=", " />
+													<f:link.action action="list" controller="Gist" extensionName="Fluidshare" pluginName="Display" pageUid="6" arguments="{extension: extension.uid}" class="library-chip library-chip-extension">
+														{extension.extensionName}
+													</f:link.action>
 										</f:for>
-									</p>
+											</div>
 								</f:if>
-							</td>
-							<td>{gist.summary -> f:format.html()}</td>
-						</tr>
+									</div>
+								</article>
 					</f:for>
-				</tbody>
-			</table>
+						</div>
+					</f:then>
+					<f:else>
+						<div class="library-empty-state">
+							<div class="library-empty-state-icon" aria-hidden="true">&lt;/&gt;</div>
+							<h3 class="h4">No examples found</h3>
+							<p class="mb-0 text-body-secondary">
+								Try clearing the filters or choose a different context or extension.
+							</p>
+						</div>
+					</f:else>
+				</f:if>
+			</div>
 		</f:else>
 	</f:if>
 </f:section>

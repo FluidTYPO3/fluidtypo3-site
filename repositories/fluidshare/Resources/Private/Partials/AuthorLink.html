@@ -1,8 +1,8 @@
 <f:if condition="{response.json.owner}">
 	<f:then>
-		<a href="https://github.com/{response.json.owner}">{response.json.owner}</a>
+		<a href="https://github.com/{response.json.owner}" rel="noreferrer">{response.json.owner}</a>
 	</f:then>
 	<f:else>
-		<v:l>text.anynomous</v:l>
+		<v:l>text.anonymous</v:l>
 	</f:else>
 </f:if>

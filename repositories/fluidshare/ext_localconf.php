@@ -1,28 +1,35 @@
 <?php
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin('Fluidshare', 'Display',
-	[\FluidTYPO3\Fluidshare\Controller\GistController::class => 'list,display'],
-	[\FluidTYPO3\Fluidshare\Controller\GistController::class => 'list']
-);
+declare(strict_types=1);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript(
+use FluidTYPO3\Fluidshare\Controller\GistController;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
+defined('TYPO3') or die();
+
+ExtensionUtility::configurePlugin(
 	'Fluidshare',
-	'setup',
-	'
-tt_content.fluidshare_filter =< lib.contentElement
-tt_content.fluidshare_filter {
-	templateName = Generic
-	20 = EXTBASEPLUGIN
-	20 {
-		extensionName = Fluidshare
-		pluginName = Display
-	}
-}
-',
-	'defaultContentRendering'
+	'Display',
+	[GistController::class => 'list'],
+	[GistController::class => 'list'],
 );
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin('Fluidshare', 'Submit',
-	[\FluidTYPO3\Fluidshare\Controller\GistController::class => 'new,confirm,create'],
-	[\FluidTYPO3\Fluidshare\Controller\GistController::class => 'confirm,create']
+ExtensionUtility::configurePlugin(
+	'Fluidshare',
+	'Detail',
+	[GistController::class => 'display'],
+);
+
+ExtensionUtility::configurePlugin(
+	'Fluidshare',
+	'Filter',
+	[GistController::class => 'list'],
+	[GistController::class => 'list'],
+);
+
+ExtensionUtility::configurePlugin(
+	'Fluidshare',
+	'Submit',
+	[GistController::class => 'new,confirm,create'],
+	[GistController::class => 'confirm,create'],
 );

@@ -1,0 +1,43 @@
+<form
+    class="site-search"
+    role="search"
+    method="get"
+    action="{f:uri.page(pageUid: 8)}"
+>
+    <label class="visually-hidden" for="site-search-field">
+        Search
+    </label>
+    <div class="input-group input-group-sm">
+        <input
+            class="site-search-input form-control"
+            id="site-search-field"
+            type="search"
+            name="tx_solr[q]"
+            placeholder="Search"
+            maxlength="50"
+            autocomplete="off"
+        />
+        <button
+            class="site-search-submit btn"
+            type="submit"
+            aria-label="Search"
+        >
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+            >
+                <path
+                    d="M11.5 10.5L15 14M13 6.5C13 10.0899 10.0899 13 6.5 13C2.91015 13 0 10.0899 0 6.5C0 2.91015 2.91015 0 6.5 0C10.0899 0 13 2.91015 13 6.5Z"
+                    transform="translate(0.5 0.5)"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                />
+            </svg>
+        </button>
+    </div>
+</form>

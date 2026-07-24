@@ -7,7 +7,10 @@
 				<source>You must enter a value</source>
 			</trans-unit>
 			<trans-unit id="plugin.display">
-				<source>Fluidshare Listing and Detail</source>
+				<source>Fluidshare Listing</source>
+			</trans-unit>
+			<trans-unit id="plugin.detail">
+				<source>Fluidshare Detail</source>
 			</trans-unit>
 			<trans-unit id="plugin.filter">
 				<source>Fluidshare Filter</source>
@@ -35,6 +38,9 @@
 			</trans-unit>
 			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.title">
 				<source>Gist title</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.slug">
+				<source>Slug</source>
 			</trans-unit>
 			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.summary">
 				<source>Gist summary</source>

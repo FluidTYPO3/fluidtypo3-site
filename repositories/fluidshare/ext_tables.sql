@@ -29,13 +29,15 @@ uid int(11) NOT NULL auto_increment,
 
 	url tinytext,
 	title tinytext,
+	slug varchar(2048) DEFAULT '' NOT NULL,
 	confirmed tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	summary mediumtext,
 	tags int(11) unsigned DEFAULT '0' NOT NULL,
 	extensions int(11) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
-	KEY parent (pid)
+	KEY parent (pid),
+	KEY slug (slug(127))
 );
 
 #
