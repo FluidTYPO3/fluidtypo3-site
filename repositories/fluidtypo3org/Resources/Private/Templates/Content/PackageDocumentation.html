@@ -1,0 +1,96 @@
+{namespace site=FluidTYPO3\FluidTYPO3Org\ViewHelpers}
+<f:layout name="Content" />
+
+<f:section name="Configuration">
+    <flux:form
+        id="package-documentation"
+        label="VHS and Flux documentation"
+        description="Shows minor VHS and Flux release lines with direct links to their TYPO3 documentation."
+        options="{group: 'FluidTYPO3'}"
+    />
+</f:section>
+
+<f:section name="Preview">
+    <strong>VHS and Flux versioned documentation</strong>
+</f:section>
+
+<f:section name="Main">
+    <f:variable name="packages" value="{site:documentationVersions()}" />
+
+    <section class="package-release-showcase package-documentation-showcase">
+        <div class="package-release-intro">
+            <p class="package-release-eyebrow">Documentation by release line</p>
+            <h2 class="package-release-heading">Find the manual that matches your version</h2>
+            <p class="package-release-lead">
+                Choose the minor release line you use. Patch releases share the same versioned documentation.
+            </p>
+        </div>
+
+        <div class="package-release-grid">
+            <f:for each="{packages}" as="package">
+                <article class="package-release-card package-release-card-{package.key} package-documentation-card">
+                    <div class="package-release-card-body">
+                        <header class="package-release-header">
+                            <span class="package-release-monogram" aria-hidden="true">{package.name}</span>
+                            <div class="package-release-title">
+                                <h3 class="package-release-name">{package.name}</h3>
+                                <p class="package-release-handle">{package.handle}</p>
+                            </div>
+                        </header>
+
+                        <p class="package-documentation-description">{package.description}</p>
+
+                        <f:if condition="{package.versions}">
+                            <f:then>
+                                <ul class="package-documentation-versions">
+                                    <f:for each="{package.versions}" as="release" iteration="iterator">
+                                        <li>
+                                            <a
+                                                class="package-documentation-link"
+                                                href="{release.url}"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="{package.name} {release.version} documentation (opens in a new tab)"
+                                            >
+                                                <span class="package-documentation-link-copy">
+                                                    <span class="package-release-version-label">
+                                                        <f:if condition="{release.isMajorRelease}">
+                                                            <f:then>Major release</f:then>
+                                                            <f:else>Minor release</f:else>
+                                                        </f:if>
+                                                    </span>
+                                                    <strong class="package-documentation-version">{release.version}</strong>
+                                                </span>
+                                                <f:if condition="{iterator.isFirst}">
+                                                    <span class="package-release-status">Latest</span>
+                                                </f:if>
+                                                <svg
+                                                    class="package-documentation-arrow"
+                                                    viewBox="0 0 16 16"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path
+                                                        d="m6 3 5 5-5 5"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </f:then>
+                            <f:else>
+                                <p class="package-documentation-unavailable">
+                                    Documentation versions are temporarily unavailable.
+                                </p>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </article>
+            </f:for>
+        </div>
+    </section>
+</f:section>
