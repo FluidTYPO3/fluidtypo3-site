@@ -134,6 +134,7 @@
       <path value="$PROJECT_DIR$/vendor/opis/json-schema" />
       <path value="$PROJECT_DIR$/vendor/busy-noggin/developer-mcp" />
       <path value="$PROJECT_DIR$/vendor/networkteam/sentry-client" />
+      <path value="$PROJECT_DIR$/vendor/typo3/cms-rte-ckeditor" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

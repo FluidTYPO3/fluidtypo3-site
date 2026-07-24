@@ -123,6 +123,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/cms-lowlevel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/cms-recycler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/cms-reports" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/cms-rte-ckeditor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/cms-scheduler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/cms-tstemplate" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/typo3/html-sanitizer" />
