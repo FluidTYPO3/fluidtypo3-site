@@ -1,0 +1,63 @@
+<li class="nav-item documentation-navigation-group">
+    <f:if condition="{nested}">
+        <f:then>
+            <f:link.action
+                action="detail"
+                controller="Documentation"
+                extensionName="Fluidtypo3org"
+                pluginName="DocDetail"
+                pageUid="{detailPageUid}"
+                arguments="{folder.route.arguments}"
+                class="documentation-navigation-subfolder-link"
+            >
+                <f:if condition="{folder.number}">
+                    <span class="documentation-navigation-number">{folder.number}</span>
+                </f:if>
+                {folder.title}
+            </f:link.action>
+        </f:then>
+        <f:else>
+            <f:link.action
+                action="detail"
+                controller="Documentation"
+                extensionName="Fluidtypo3org"
+                pluginName="DocDetail"
+                pageUid="{detailPageUid}"
+                arguments="{folder.route.arguments}"
+                class="documentation-folder-chip"
+            >
+                <f:if condition="{folder.number}">
+                    <span class="documentation-navigation-number">{folder.number}</span>
+                </f:if>
+                {folder.title}
+            </f:link.action>
+        </f:else>
+    </f:if>
+
+    <ul class="nav flex-column ms-3">
+        <f:for each="{folder.documents}" as="document">
+            <li class="nav-item">
+                <f:link.action
+                    action="detail"
+                    controller="Documentation"
+                    extensionName="Fluidtypo3org"
+                    pluginName="DocDetail"
+                    pageUid="{detailPageUid}"
+                    arguments="{document.route.arguments}"
+                    class="nav-link px-0 py-1"
+                >
+                    <f:if condition="{document.number}">
+                        <span class="documentation-navigation-number">{document.number}</span>
+                    </f:if>
+                    {document.title}
+                </f:link.action>
+            </li>
+        </f:for>
+        <f:for each="{folder.folders}" as="childFolder">
+            <f:render
+                partial="Documentation/NavigationFolder"
+                arguments="{folder: childFolder, detailPageUid: detailPageUid, nested: 1}"
+            />
+        </f:for>
+    </ul>
+</li>

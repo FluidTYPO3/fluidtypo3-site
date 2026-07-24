@@ -1,0 +1,34 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:form action="list" controller="Gist" extensionName="Fluidshare" pluginName="Display" method="post" class="form">
+	<div class="form-group">
+		<label class="control-label container">
+			<v:l>text.tags</v:l>
+		</label>
+		<f:form.select name="tag" class="form-control">
+			<f:form.select.option value=""></f:form.select.option>
+			<f:for each="{tags}" as="tag">
+				<f:form.select.option value="{tag.uid}" selected="{f:if(condition: '{tag.uid} == {selectedTag}', then: 'selected')}">
+					{tag.name}
+				</f:form.select.option>
+			</f:for>
+		</f:form.select>
+	</div>
+	<div class="form-group">
+		<label class="control-label container">
+			<v:l>text.extensions</v:l>
+		</label>
+		<f:form.select name="extension" class="form-control">
+			<f:form.select.option value=""></f:form.select.option>
+			<f:for each="{extensions}" as="extension">
+				<f:form.select.option value="{extension.uid}" selected="{f:if(condition: '{extension.uid} == {selectedExtension}', then: 'selected')}">
+					{extension.extensionName}
+				</f:form.select.option>
+			</f:for>
+		</f:form.select>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary btn-huge btn-block">
+			<v:l>text.filter</v:l>
+		</button>
+	</div>
+</f:form>

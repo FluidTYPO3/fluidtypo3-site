@@ -1,0 +1,68 @@
+<f:if condition="{document}">
+    <f:then>
+        <article class="documentation-detail">
+            <div class="documentation-markdown">
+                <f:format.raw>{renderedMarkdown}</f:format.raw>
+            </div>
+        </article>
+    </f:then>
+    <f:else>
+        <f:if condition="{folder}">
+            <nav class="documentation-detail-navigation" aria-label="{folder.title} navigation">
+                <f:if condition="{folder.folders.empty}">
+                    <f:else>
+                        <ul class="documentation-subfolder-grid list-unstyled mb-0">
+                            <f:for each="{folder.folders}" as="childFolder">
+                                <li>
+                                    <article class="documentation-subfolder-chip">
+                                        <h2 class="documentation-subfolder-title h5 mb-0">
+                                            <f:link.action
+                                                action="detail"
+                                                arguments="{childFolder.route.arguments}"
+                                                class="documentation-subfolder-title-link"
+                                            >
+                                                {childFolder.title}
+                                            </f:link.action>
+                                        </h2>
+                                        <f:render
+                                            partial="Documentation/DetailNavigationItems"
+                                            arguments="{folder: childFolder}"
+                                        />
+                                    </article>
+                                </li>
+                            </f:for>
+                        </ul>
+                    </f:else>
+                </f:if>
+
+                <f:if condition="{folder.documents.empty}">
+                    <f:else>
+                        <ul class="documentation-document-grid list-unstyled mb-0">
+                            <f:for each="{folder.documents}" as="childDocument">
+                                <li>
+                                    <f:link.action
+                                        action="detail"
+                                        arguments="{childDocument.route.arguments}"
+                                        class="documentation-detail-document-link"
+                                    >
+                                        <span class="documentation-detail-document-title">
+                                            <f:if condition="{childDocument.number}">
+                                                <span class="documentation-navigation-number">
+                                                    {childDocument.number}
+                                                </span>
+                                            </f:if>
+                                            {childDocument.title}
+                                        </span>
+                                        <span class="documentation-detail-document-excerpt">
+                                            {childDocument.excerpt}
+                                        </span>
+                                    </f:link.action>
+                                </li>
+                            </f:for>
+                        </ul>
+                    </f:else>
+                </f:if>
+            </nav>
+        </f:if>
+    </f:else>
+</f:if>

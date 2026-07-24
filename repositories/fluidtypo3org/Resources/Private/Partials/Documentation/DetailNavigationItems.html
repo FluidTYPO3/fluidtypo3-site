@@ -1,0 +1,35 @@
+<ul class="documentation-subfolder-children mb-0">
+    <f:for each="{folder.folders}" as="childFolder">
+        <li>
+            <f:link.action
+                action="detail"
+                arguments="{childFolder.route.arguments}"
+                class="documentation-detail-folder-link"
+            >
+                <f:if condition="{childFolder.number}">
+                    <span class="documentation-navigation-number">{childFolder.number}</span>
+                </f:if>
+                {childFolder.title}
+            </f:link.action>
+            <f:render
+                partial="Documentation/DetailNavigationItems"
+                arguments="{folder: childFolder}"
+            />
+        </li>
+    </f:for>
+
+    <f:for each="{folder.documents}" as="document">
+        <li>
+            <f:link.action
+                action="detail"
+                arguments="{document.route.arguments}"
+                class="documentation-detail-file-link"
+            >
+                <f:if condition="{document.number}">
+                    <span class="documentation-navigation-number">{document.number}</span>
+                </f:if>
+                {document.title}
+            </f:link.action>
+        </li>
+    </f:for>
+</ul>

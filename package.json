@@ -1,0 +1,17 @@
+{
+  "name": "fluidtypo3org",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "sass": "^1.84.0"
+  },
+  "scripts": {
+    "create-folders": "mkdir -p public/_assets/bootstrap public/_assets/fluidtypo3org",
+    "build": "npm run build-css && npm run build-js",
+    "build-css": "npm run create-folders && sass --load-path=node_modules assets/scss/bootstrap.scss public/_assets/bootstrap/bootstrap.css --quiet-deps --style compressed",
+    "watch-css": "npm run create-folders && sass --load-path=node_modules assets/scss/bootstrap.scss:public/_assets/bootstrap/bootstrap.css --quiet-deps --watch",
+    "build-js": "npm run build-js-bootstrap && npm run build-js-site",
+    "build-js-bootstrap": "npm run create-folders && cp node_modules/bootstrap/dist/js/* public/_assets/bootstrap/",
+    "build-js-site": "npm run create-folders && cp assets/js/*.js public/_assets/fluidtypo3org/"
+  }
+}

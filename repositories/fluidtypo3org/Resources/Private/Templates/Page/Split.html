@@ -1,0 +1,42 @@
+<f:layout name="Page" />
+
+<f:section name="Configuration">
+    <flux:form id="documentation-fluidtypo3org" label="Split nav left / content right" />
+    <flux:grid>
+        <flux:grid.row>
+            <flux:grid.column colPos="1" label="Navigation" />
+            <flux:grid.column colPos="0" label="Body" />
+        </flux:grid.row>
+    </flux:grid>
+</f:section>
+
+<f:section name="Header">
+    <f:render partial="Page/PrimaryNavigation" />
+</f:section>
+
+<f:section name="SubNavigation">
+    <nav class="site-subnavigation" aria-label="Page navigation">
+        <ul class="nav flex-nowrap">
+            <v:menu pageUid="4" as="menu">
+                <f:for each="{menu}" as="item">
+                    <li class="nav-item">
+                        <a href="{item.link}" class="nav-link {item.class}">
+                            {item.linktext}
+                        </a>
+                    </li>
+                </f:for>
+            </v:menu>
+        </ul>
+    </nav>
+</f:section>
+
+<f:section name="Main">
+    <div class="row gx-lg-5">
+        <aside class="col-12 col-lg-4 col-xxxl-3 mb-4 mb-lg-0" aria-label="Content navigation">
+            <v:content.render column="1" />
+        </aside>
+        <div class="col-12 col-lg-8 col-xxxl-9">
+            <v:content.render column="0" />
+        </div>
+    </div>
+</f:section>

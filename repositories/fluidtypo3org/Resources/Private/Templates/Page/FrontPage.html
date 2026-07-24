@@ -1,0 +1,125 @@
+<f:layout name="FrontPage" />
+
+<f:section name="Configuration">
+    <flux:form id="frontpage-fluidtypo3org" label="Front Page" />
+    <flux:grid>
+        <flux:grid.row>
+            <flux:grid.column colPos="0" label="Main content" />
+        </flux:grid.row>
+    </flux:grid>
+</f:section>
+
+<f:section name="Header">
+    <f:render partial="Page/PrimaryNavigation" />
+</f:section>
+
+<f:section name="Main">
+    <section class="front-page-hero">
+        <div class="container">
+            <div class="row align-items-center gy-4 gx-lg-5">
+                <div class="col-12 col-lg-7">
+                    <div class="front-page-logo" role="img" aria-label="FluidTYPO3">
+                        <img
+                            class="front-page-logo-image front-page-logo-image-light"
+                            src="{f:uri.resource(path: 'Images/Logo.svg', extensionName: 'Fluidtypo3org')}"
+                            width="960"
+                            height="560"
+                            alt=""
+                        />
+                        <img
+                            class="front-page-logo-image front-page-logo-image-dark"
+                            src="{f:uri.resource(path: 'Images/LogoDark.svg', extensionName: 'Fluidtypo3org')}"
+                            width="960"
+                            height="560"
+                            alt=""
+                            aria-hidden="true"
+                        />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-5">
+                    <div class="front-page-hero-copy">
+                        <h1 class="front-page-title">Productive Templating</h1>
+                        <p class="front-page-lead">
+                            <strong>Fluid Powered TYPO3</strong> is a family of TYPO3 extensions designed to boost
+                            productivity and flexibility when creating CMS templates.
+                        </p>
+                        <div class="front-page-actions d-flex flex-wrap gap-3">
+                            <button
+                                class="btn btn-success btn-lg"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#features-video"
+                            >
+                                <svg class="front-page-action-icon" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M6.25 4.7v6.6L11.5 8 6.25 4.7Z" fill="currentColor" />
+                                    <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" />
+                                </svg>
+                                Features
+                            </button>
+                            <f:link.page class="btn btn-primary btn-lg" pageUid="2">
+                                <svg class="front-page-action-icon" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path
+                                        d="M2.25 2.5h4.1c.9 0 1.65.75 1.65 1.65v9.35c0-.9-.75-1.65-1.65-1.65h-4.1V2.5Zm11.5 0h-4.1c-.9 0-1.65.75-1.65 1.65v9.35c0-.9.75-1.65 1.65-1.65h4.1V2.5Z"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                                Documentation
+                            </f:link.page>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div
+        class="modal fade"
+        id="features-video"
+        tabindex="-1"
+        aria-labelledby="features-video-title"
+        aria-hidden="true"
+        data-features-video-modal
+    >
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="features-video-title">
+                        Fluid Powered TYPO3 features
+                    </h2>
+                    <button
+                        class="btn-close"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body front-page-video-container p-0">
+                    <div class="ratio ratio-16x9">
+                        <video
+                            class="front-page-video"
+                            controls
+                            preload="metadata"
+                            playsinline
+                            data-features-video
+                        >
+                            <source
+                                src="{f:uri.resource(path: 'Video/Intro.mp4', extensionName: 'Fluidtypo3org')}"
+                                type="video/mp4"
+                            />
+                            Your browser does not support HTML video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="features" class="front-page-content py-5">
+        <div class="container">
+            <v:content.render column="0" />
+        </div>
+    </section>
+</f:section>

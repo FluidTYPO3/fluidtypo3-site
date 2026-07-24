@@ -1,0 +1,57 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="Main">
+	<f:if condition="{renderFilter}">
+		<f:then>
+			<f:render partial="Filter" arguments="{_all}" />
+		</f:then>
+		<f:else>
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th class="col-sm-6">
+							<v:l>flux.tx_fluidshare_domain_model_gist.fields.title</v:l>
+						</th>
+						<th class="col-sm-6">
+							<v:l>flux.tx_fluidshare_domain_model_gist.fields.summary</v:l>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<f:for each="{gists}" as="gist" iteration="iteration">
+						<tr>
+							<td>
+								<f:link.action action="display" arguments="{gist: gist.uid}">
+									<h4>
+										<small>
+											<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
+										</small>
+										{gist.title}
+									</h4>
+								</f:link.action>
+								<f:if condition="{gist.tags}">
+									<p>
+										<span class="glyphicon glyphicon-tags text-muted" style="margin-left: 0.6em; margin-right: 0.4em;"></span>
+										<f:for each="{gist.tags}" as="tag" iteration="iterator">
+											<f:link.action action="list" arguments="{tag: tag.uid}">{tag.name}</f:link.action><f:if condition="{iterator.isLast}" else=", " />
+										</f:for>
+									</p>
+								</f:if>
+								<f:if condition="{gist.extensions}">
+									<p>
+										<span class="glyphicon glyphicon-folder-close text-muted" style="margin-left: 0.6em; margin-right: 0.4em;"></span>
+										<f:for each="{gist.extensions}" as="extension" iteration="iterator">
+											<f:link.action action="list" arguments="{extension: extension.uid}">{extension.extensionName}</f:link.action><f:if condition="{iterator.isLast}" else=", " />
+										</f:for>
+									</p>
+								</f:if>
+							</td>
+							<td>{gist.summary -> f:format.html()}</td>
+						</tr>
+					</f:for>
+				</tbody>
+			</table>
+		</f:else>
+	</f:if>
+</f:section>

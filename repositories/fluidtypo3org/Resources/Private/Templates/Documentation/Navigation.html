@@ -1,0 +1,47 @@
+<div class="documentation-navigation-selector d-lg-none mb-4">
+    <label class="form-label" for="documentation-mobile-navigation">
+        Browse documentation
+    </label>
+    <select
+        class="form-select"
+        id="documentation-mobile-navigation"
+        data-documentation-selector
+    >
+        <option value="" selected disabled>Select a topic…</option>
+        <option value="{f:uri.page(pageUid: detailPageUid)}">
+            Documentation
+        </option>
+        <f:for each="{root.folders}" as="folder">
+            <option value="{f:uri.action(action: 'detail', controller: 'Documentation', extensionName: 'Fluidtypo3org', pluginName: 'DocDetail', pageUid: detailPageUid, arguments: folder.route.arguments)}">
+                {folder.number} {folder.title}
+            </option>
+            <f:for each="{folder.documents}" as="document">
+                <option value="{f:uri.action(action: 'detail', controller: 'Documentation', extensionName: 'Fluidtypo3org', pluginName: 'DocDetail', pageUid: detailPageUid, arguments: document.route.arguments)}">
+                    — {document.number} {document.title}
+                </option>
+            </f:for>
+            <f:for each="{folder.folders}" as="childFolder">
+                <option value="{f:uri.action(action: 'detail', controller: 'Documentation', extensionName: 'Fluidtypo3org', pluginName: 'DocDetail', pageUid: detailPageUid, arguments: childFolder.route.arguments)}">
+                    — {childFolder.number} {childFolder.title}
+                </option>
+                <f:for each="{childFolder.documents}" as="childDocument">
+                    <option value="{f:uri.action(action: 'detail', controller: 'Documentation', extensionName: 'Fluidtypo3org', pluginName: 'DocDetail', pageUid: detailPageUid, arguments: childDocument.route.arguments)}">
+                        —— {childDocument.number} {childDocument.title}
+                    </option>
+                </f:for>
+            </f:for>
+        </f:for>
+    </select>
+</div>
+
+<nav class="documentation-navigation d-none d-lg-block" aria-label="Documentation">
+    <h2 class="h5 mb-3">Documentation</h2>
+    <ul class="nav flex-column gap-1">
+        <f:for each="{root.folders}" as="folder">
+            <f:render
+                partial="Documentation/NavigationFolder"
+                arguments="{folder: folder, detailPageUid: detailPageUid, nested: 0}"
+            />
+        </f:for>
+    </ul>
+</nav>

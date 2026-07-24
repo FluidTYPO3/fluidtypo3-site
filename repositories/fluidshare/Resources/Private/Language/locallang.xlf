@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="fluidshare" date="2014-01-05T14:38:32+01:00">
+		<header/>
+		<body>
+			<trans-unit id="errors.1221560718">
+				<source>You must enter a value</source>
+			</trans-unit>
+			<trans-unit id="plugin.display">
+				<source>Fluidshare Listing and Detail</source>
+			</trans-unit>
+			<trans-unit id="plugin.filter">
+				<source>Fluidshare Filter</source>
+			</trans-unit>
+			<trans-unit id="plugin.submit">
+				<source>Fluidshare Submit</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_tag">
+				<source>Fluidshare Gist Tag</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_tag.fields.name">
+				<source>Tag value</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_extension">
+				<source>Fluidshare Gist Extension Facet</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_extension.fields.extension_name">
+				<source>Qualified name</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_extension.fields.extension_key">
+				<source>Extension key</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist">
+				<source>Fluidshare Gist</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.title">
+				<source>Gist title</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.summary">
+				<source>Gist summary</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.confirmed">
+				<source>Confirmed for publishing</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.tags">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.extensions">
+				<source>Extensions</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.summary.errors.1221560910">
+				<source>A brief summary must be written, no HTML allowed. Use double line breaks to create paragraphs.</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.summary.errors.1221560718">
+				<source>A brief summary must be written, no HTML allowed. Use double line breaks to create paragraphs.</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.url">
+				<source>Gist URL</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.url.errors.1221560718">
+				<source>Gist URL is required</source>
+			</trans-unit>
+			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.url.errors.1221565130">
+				<source><![CDATA[Gist URL must start with <strong>https://gist.github.com/</strong>]]></source>
+			</trans-unit>
+			<trans-unit id="button.submit">
+				<source>Add Gist to library</source>
+			</trans-unit>
+			<trans-unit id="text.preview">
+				<source>Gist Preview</source>
+			</trans-unit>
+			<trans-unit id="text.metadata">
+				<source>Gist Metadata</source>
+			</trans-unit>
+			<trans-unit id="text.author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="text.created">
+				<source>Creation date</source>
+			</trans-unit>
+			<trans-unit id="text.files">
+				<source>Files</source>
+			</trans-unit>
+			<trans-unit id="text.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="text.noDescription">
+				<source>No description entered in Gist data (only local summary will be displayed)</source>
+			</trans-unit>
+			<trans-unit id="text.anonymous">
+				<source>Anonymous</source>
+			</trans-unit>
+			<trans-unit id="text.tags">
+				<source>Context</source>
+			</trans-unit>
+			<trans-unit id="text.extensions">
+				<source>Extension</source>
+			</trans-unit>
+			<trans-unit id="text.filter">
+				<source>View filtered list</source>
+			</trans-unit>
+			<trans-unit id="text.source">
+				<source>Gist source:</source>
+			</trans-unit>
+			<trans-unit id="text.gists">
+				<source>Gists</source>
+			</trans-unit>
+			<trans-unit id="messages.created">
+				<source>Entry created! Please allow a bit of time for the web master to approve the submission.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

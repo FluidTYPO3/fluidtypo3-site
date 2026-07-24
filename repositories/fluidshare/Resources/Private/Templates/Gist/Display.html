@@ -1,0 +1,22 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="Main">
+	<f:if condition="{renderFilter}">
+		<f:then>
+			<f:render partial="Filter" arguments="{_all}" />
+		</f:then>
+		<f:else>
+			<h1>{gist.title}</h1>
+			<div class="well">
+				<f:format.html>{gist.summary}</f:format.html>
+			</div>
+			<f:if condition="{response.description}">
+				<hr />
+				<f:format.html>{response.description}</f:format.html>
+			</f:if>
+			<f:render partial="GistMeta" arguments="{_all}" />
+			<f:format.raw>{response.json.div}</f:format.raw>
+		</f:else>
+	</f:if>
+</f:section>

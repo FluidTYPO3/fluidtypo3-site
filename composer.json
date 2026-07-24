@@ -1,0 +1,48 @@
+{
+  "name": "fluidtypo3/fluidtypo3-site",
+  "description": "Web site: fluidtypo3.org",
+  "license": "GPL-2.0-or-later",
+  "version": "1.0.0",
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "repositories/*"
+    },
+    {
+      "type": "vcs",
+      "url": "ssh://git@github.com:22/busynoggin/developer-mcp.git"
+    }
+  ],
+  "require": {
+    "apache-solr-for-typo3/solr": "^14.0@dev",
+    "fluidtypo3/fluidshare": "@dev",
+    "fluidtypo3/fluidtypo3org": "dev-main",
+    "fluidtypo3/flux": "^12.0",
+    "fluidtypo3/vhs": "^8.0",
+    "typo3/cms-backend": "^14.3",
+    "typo3/cms-core": "^14.3",
+    "typo3/cms-extbase": "^14.3",
+    "typo3/cms-fluid": "^14.3",
+    "typo3/cms-fluid-styled-content": "^14.3",
+    "typo3/cms-frontend": "^14.3",
+    "typo3/cms-install": "^14.3",
+    "typo3/cms-lowlevel": "^14.3",
+    "typo3/cms-recycler": "^14.3",
+    "typo3/cms-scheduler": "^14.3",
+    "typo3/cms-setup": "*",
+    "typo3/cms-tstemplate": "^14.3"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "npm install",
+      "npm run build"
+    ]
+  }
+}

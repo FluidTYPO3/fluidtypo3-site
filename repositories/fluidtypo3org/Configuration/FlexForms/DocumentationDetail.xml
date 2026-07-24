@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Documentation detail</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.documentRoute>
+                        <label>Specific documentation file</label>
+                        <description>
+                            When selected, always render this file instead of the documentation route from the URL.
+                        </description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <itemsProcFunc>FluidTYPO3\FluidTYPO3Org\Backend\Form\DocumentationFileItemsProvider->addItems</itemsProcFunc>
+                        </config>
+                    </settings.documentRoute>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

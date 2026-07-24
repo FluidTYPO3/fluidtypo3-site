@@ -1,0 +1,56 @@
+base: 'https://fluidtypo3-site.ddev.site/'
+dependencies:
+  - typo3/fluid-styled-content
+languages:
+  -
+    title: English
+    enabled: true
+    languageId: 0
+    base: /
+    locale: en_US.UTF-8
+    navigationTitle: English
+    flag: us
+rootPageId: 1
+routeEnhancers:
+  Documentation:
+    type: Extbase
+    extension: Fluidtypo3org
+    plugin: DocDetail
+    defaultController: 'Documentation::detail'
+    routes:
+      -
+        routePath: '/{segment1}/{segment2}/{segment3}'
+        _controller: 'Documentation::detail'
+        _arguments:
+          segment1: segment1
+          segment2: segment2
+          segment3: segment3
+      -
+        routePath: '/{segment1}/{segment2}'
+        _controller: 'Documentation::detail'
+        _arguments:
+          segment1: segment1
+          segment2: segment2
+      -
+        routePath: '/{segment1}'
+        _controller: 'Documentation::detail'
+        _arguments:
+          segment1: segment1
+    requirements:
+      segment1: '[a-z0-9]+(?:-[a-z0-9]+)*'
+      segment2: '[a-z0-9]+(?:-[a-z0-9]+)*'
+      segment3: '[a-z0-9]+(?:-[a-z0-9]+)*'
+    aspects:
+      segment1:
+        type: SafeDocumentationSegmentMapper
+      segment2:
+        type: SafeDocumentationSegmentMapper
+      segment3:
+        type: SafeDocumentationSegmentMapper
+solr_enabled_read: true
+solr_host_read: solr
+solr_path_read: /
+solr_port_read: '8983'
+solr_scheme_read: ''
+solr_use_write_connection: false
+websiteTitle: ''

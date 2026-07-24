@@ -1,0 +1,4 @@
+# @import 'EXT:fluidshare/Configuration/TypoScript/setup.typoscript'
+
+plugin.tx_fluidshare_display.persistence.storagePid = 7
+plugin.tx_fluidshare_submit.persistence.storagePid = 7

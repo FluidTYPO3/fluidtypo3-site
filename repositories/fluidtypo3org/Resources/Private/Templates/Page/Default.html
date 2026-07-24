@@ -1,0 +1,18 @@
+<f:layout name="Page" />
+
+<f:section name="Configuration">
+    <flux:form id="defaultpage-fluidtypo3org" label="Default Page" />
+    <flux:grid>
+        <flux:grid.row>
+            <flux:grid.column colPos="0" label="Main content" />
+        </flux:grid.row>
+    </flux:grid>
+</f:section>
+
+<f:section name="Header">
+    <f:render partial="Page/PrimaryNavigation" />
+</f:section>
+
+<f:section name="Main">
+    <v:content.render column="0" />
+</f:section>

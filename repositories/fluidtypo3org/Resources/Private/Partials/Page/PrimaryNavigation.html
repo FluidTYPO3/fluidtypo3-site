@@ -1,0 +1,25 @@
+<v:menu pageUid="1" as="menu">
+    <button
+        class="navbar-toggler ms-auto"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#primary-navigation"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-3 order-lg-0 flex-grow-1" id="primary-navigation">
+        <ul class="navbar-nav me-auto">
+            <f:for each="{menu}" as="item">
+                <li class="nav-item">
+                    <a class="nav-link px-lg-4 py-3 {item.class}" href="{item.link}">
+                        {item.linktext}
+                    </a>
+                </li>
+            </f:for>
+        </ul>
+    </div>
+</v:menu>

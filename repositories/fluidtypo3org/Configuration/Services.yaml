@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  FluidTYPO3\FluidTYPO3Org\:
+    resource: '../Classes/*'
+
+  FluidTYPO3\FluidTYPO3Org\Documentation\Repository\DocumentationRepositoryInterface:
+    alias: FluidTYPO3\FluidTYPO3Org\Documentation\Repository\FilesystemDocumentationRepository

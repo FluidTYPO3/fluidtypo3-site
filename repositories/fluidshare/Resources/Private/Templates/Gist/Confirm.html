@@ -1,0 +1,26 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="Main">
+	<h2><v:l>text.metadata</v:l></h2>
+	<div class="alert alert-info">
+		{gist.summary -> f:format.html()}
+	</div>
+	<f:render partial="GistMeta" arguments="{_all}" />
+	<f:form action="create" name="gist" object="{gist}" method="post">
+		<f:form.hidden property="url" value="{gist.url}" />
+		<f:form.hidden property="summary" value="{gist.summary}" />
+		<f:form.hidden property="title" value="{gist.title}" />
+		<f:for each="{gist.tags}" as="tag" iteration="iterator">
+			<f:form.hidden property="tags.{iterator.index}" value="{tag.uid}" />
+		</f:for>
+		<f:for each="{gist.extensions}" as="extension" iteration="iterator">
+			<f:form.hidden property="extensions.{iterator.index}" value="{extension.uid}" />
+		</f:for>
+		<button type="submit" class="btn btn-success btn-large">
+			<v:l>button.submit</v:l>
+		</button>
+	</f:form>
+	<h2><v:l>text.preview</v:l></h2>
+	{response.json.div -> f:format.raw()}
+</f:section>

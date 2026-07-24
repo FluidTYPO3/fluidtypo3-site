@@ -1,0 +1,24 @@
+{
+  "name": "fluidtypo3/fluidtypo3org",
+  "description": "Site package for fluidtypo3.org",
+  "type": "typo3-cms-extension",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://fluidtypo3.org",
+  "require": {
+    "fluidtypo3/flux": "^12.0",
+    "fluidtypo3/vhs": "^8.0",
+    "league/commonmark": "^2.7",
+    "php": "^8.2",
+    "typo3/cms-core": "^14.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "FluidTYPO3\\FluidTYPO3Org\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "fluidtypo3org"
+    }
+  }
+}

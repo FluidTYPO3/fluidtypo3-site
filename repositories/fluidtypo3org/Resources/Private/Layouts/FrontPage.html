@@ -1,0 +1,75 @@
+<f:asset.css
+    identifier="fluidtypo3org-bootstrap"
+    href="/_assets/bootstrap/bootstrap.css"
+/>
+<f:asset.script
+    identifier="fluidtypo3org-theme-init"
+    src="/_assets/fluidtypo3org/theme-init.js"
+    priority="true"
+/>
+<f:asset.script
+    identifier="fluidtypo3org-bootstrap"
+    src="/_assets/bootstrap/bootstrap.bundle.min.js"
+    defer="true"
+/>
+<f:asset.script
+    identifier="fluidtypo3org-site"
+    src="/_assets/fluidtypo3org/site.js"
+    defer="true"
+/>
+
+<a class="visually-hidden-focusable" href="#main-content">
+    Skip to main content
+</a>
+
+<div class="d-flex min-vh-100 flex-column">
+    <header class="site-header">
+        <nav class="site-topbar navbar navbar-expand-lg p-0" data-bs-theme="dark" aria-label="Primary navigation">
+            <div class="container d-flex flex-wrap align-items-center">
+                <f:link.page class="site-brand navbar-brand py-2" pageUid="1">
+                    <span class="visually-hidden">FluidTYPO3 home</span>
+                    <img
+                        class="site-brand-image site-brand-image-light"
+                        src="{f:uri.resource(path: 'Images/Brand.svg', extensionName: 'Fluidtypo3org')}"
+                        width="84"
+                        height="40"
+                        alt=""
+                        aria-hidden="true"
+                    />
+                    <img
+                        class="site-brand-image site-brand-image-dark"
+                        src="{f:uri.resource(path: 'Images/BrandDark.svg', extensionName: 'Fluidtypo3org')}"
+                        width="84"
+                        height="40"
+                        alt=""
+                        aria-hidden="true"
+                    />
+                </f:link.page>
+                <f:render section="Header" optional="true" />
+
+                <button
+                    class="theme-toggle btn btn-sm ms-2"
+                    type="button"
+                    data-theme-toggle
+                    aria-label="Use dark theme"
+                    title="Use dark theme"
+                >
+                    <span data-theme-icon aria-hidden="true">☾</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" class="flex-grow-1">
+        <f:render section="Main" />
+    </main>
+
+    <footer class="site-footer border-top">
+        <div class="container d-flex flex-wrap justify-content-between gap-2 py-3">
+            <span>
+                &copy; <f:format.date format="Y">now</f:format.date> FluidTYPO3
+            </span>
+            <f:render section="Footer" optional="true" />
+        </div>
+    </footer>
+</div>
