@@ -1,0 +1,212 @@
+<f:layout name="Content" />
+
+<f:section name="Configuration">
+    <flux:form
+        id="package-releases"
+        label="VHS and Flux releases"
+        description="Shows the latest VHS and Flux releases with links to GitHub and Packagist."
+        options="{group: 'FluidTYPO3'}"
+    >
+        <flux:form.sheet name="vhs" label="VHS">
+            <flux:field.input
+                name="settings.vhs.latestRelease"
+                label="Latest release"
+                description="The most recent VHS release, for example 8.0.3."
+                placeholder="8.0.3"
+                required="true"
+            />
+            <flux:field
+                type="link"
+                name="settings.vhs.githubUrl"
+                label="GitHub repository"
+                description="Link to the VHS GitHub repository."
+                config="{
+                    allowedTypes: {0: 'url'},
+                    size: 50,
+                    required: true,
+                    default: 'https://github.com/FluidTYPO3/vhs'
+                }"
+            />
+            <flux:field
+                type="link"
+                name="settings.vhs.packagistUrl"
+                label="Packagist page"
+                description="Link to the VHS package on Packagist."
+                config="{
+                    allowedTypes: {0: 'url'},
+                    size: 50,
+                    required: true,
+                    default: 'https://packagist.org/packages/fluidtypo3/vhs'
+                }"
+            />
+        </flux:form.sheet>
+
+        <flux:form.sheet name="flux" label="Flux">
+            <flux:field.input
+                name="settings.flux.latestRelease"
+                label="Latest release"
+                description="The most recent Flux release, for example 12.0.0."
+                placeholder="12.0.0"
+                required="true"
+            />
+            <flux:field
+                type="link"
+                name="settings.flux.githubUrl"
+                label="GitHub repository"
+                description="Link to the Flux GitHub repository."
+                config="{
+                    allowedTypes: {0: 'url'},
+                    size: 50,
+                    required: true,
+                    default: 'https://github.com/FluidTYPO3/flux'
+                }"
+            />
+            <flux:field
+                type="link"
+                name="settings.flux.packagistUrl"
+                label="Packagist page"
+                description="Link to the Flux package on Packagist."
+                config="{
+                    allowedTypes: {0: 'url'},
+                    size: 50,
+                    required: true,
+                    default: 'https://packagist.org/packages/fluidtypo3/flux'
+                }"
+            />
+        </flux:form.sheet>
+    </flux:form>
+</f:section>
+
+<f:section name="Preview">
+    <strong>VHS {settings.vhs.latestRelease}</strong>
+    <span aria-hidden="true"> · </span>
+    <strong>Flux {settings.flux.latestRelease}</strong>
+</f:section>
+
+<f:section name="Main">
+    <section class="package-release-showcase">
+        <div class="package-release-intro">
+            <p class="package-release-eyebrow">Productive templating for TYPO3 · Fluid centered</p>
+            <h2 class="package-release-heading">The Fluid Powered TYPO3 essentials</h2>
+            <p class="package-release-lead">
+                Build flexible content structures with Flux, then reach further with the ViewHelper collection in VHS.
+            </p>
+        </div>
+
+        <div class="package-release-grid">
+            <article class="package-release-card package-release-card-vhs">
+                <div class="package-release-card-body">
+                    <header class="package-release-header">
+                        <span class="package-release-monogram" aria-hidden="true">VHS</span>
+                        <div class="package-release-title">
+                            <h3 class="package-release-name">VHS</h3>
+                            <p class="package-release-handle">fluidtypo3/vhs</p>
+                        </div>
+                    </header>
+
+                    <div class="package-release-version">
+                        <div>
+                            <span class="package-release-version-label">Latest stable release</span>
+                            <strong class="package-release-version-number">{settings.vhs.latestRelease}</strong>
+                        </div>
+                        <span class="package-release-status">Current</span>
+                    </div>
+
+                    <p class="package-release-description">
+                        A focused collection of ViewHelpers that keeps complex Fluid templates readable and reusable.
+                    </p>
+
+                    <div class="package-release-links">
+                        <f:link.typolink
+                            parameter="{settings.vhs.githubUrl}"
+                            class="package-release-link package-release-link-primary"
+                            target="_blank"
+                            additionalAttributes="{rel: 'noopener noreferrer'}"
+                        >
+                            <svg class="package-release-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    fill="currentColor"
+                                    d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.58 9.58 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                                />
+                            </svg>
+                            <span>GitHub</span>
+                            <span class="visually-hidden">(opens in a new tab)</span>
+                        </f:link.typolink>
+                        <f:link.typolink
+                            parameter="{settings.vhs.packagistUrl}"
+                            class="package-release-link"
+                            target="_blank"
+                            additionalAttributes="{rel: 'noopener noreferrer'}"
+                        >
+                            <svg class="package-release-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    fill="currentColor"
+                                    d="M5.25 5.5 12 2l6.75 3.5v7L12 16l-6.75-3.5v-7Zm1.5.91v5.18L12 14.31l5.25-2.72V6.41L12 9.13 6.75 6.41Zm.87-1.03L12 7.65l4.38-2.27L12 3.11 7.62 5.38ZM5.25 15.3 12 18.8l6.75-3.5v2.2L12 21l-6.75-3.5v-2.2Z"
+                                />
+                            </svg>
+                            <span>Packagist</span>
+                            <span class="visually-hidden">(opens in a new tab)</span>
+                        </f:link.typolink>
+                    </div>
+                </div>
+            </article>
+
+            <article class="package-release-card package-release-card-flux">
+                <div class="package-release-card-body">
+                    <header class="package-release-header">
+                        <span class="package-release-monogram" aria-hidden="true">Flux</span>
+                        <div class="package-release-title">
+                            <h3 class="package-release-name">Flux</h3>
+                            <p class="package-release-handle">fluidtypo3/flux</p>
+                        </div>
+                    </header>
+
+                    <div class="package-release-version">
+                        <div>
+                            <span class="package-release-version-label">Latest stable release</span>
+                            <strong class="package-release-version-number">{settings.flux.latestRelease}</strong>
+                        </div>
+                        <span class="package-release-status">Current</span>
+                    </div>
+
+                    <p class="package-release-description">
+                        Declarative page and content structures, configured directly in Fluid and ready for editors.
+                    </p>
+
+                    <div class="package-release-links">
+                        <f:link.typolink
+                            parameter="{settings.flux.githubUrl}"
+                            class="package-release-link package-release-link-primary"
+                            target="_blank"
+                            additionalAttributes="{rel: 'noopener noreferrer'}"
+                        >
+                            <svg class="package-release-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    fill="currentColor"
+                                    d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.58 9.58 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                                />
+                            </svg>
+                            <span>GitHub</span>
+                            <span class="visually-hidden">(opens in a new tab)</span>
+                        </f:link.typolink>
+                        <f:link.typolink
+                            parameter="{settings.flux.packagistUrl}"
+                            class="package-release-link"
+                            target="_blank"
+                            additionalAttributes="{rel: 'noopener noreferrer'}"
+                        >
+                            <svg class="package-release-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    fill="currentColor"
+                                    d="M5.25 5.5 12 2l6.75 3.5v7L12 16l-6.75-3.5v-7Zm1.5.91v5.18L12 14.31l5.25-2.72V6.41L12 9.13 6.75 6.41Zm.87-1.03L12 7.65l4.38-2.27L12 3.11 7.62 5.38ZM5.25 15.3 12 18.8l6.75-3.5v2.2L12 21l-6.75-3.5v-2.2Z"
+                                />
+                            </svg>
+                            <span>Packagist</span>
+                            <span class="visually-hidden">(opens in a new tab)</span>
+                        </f:link.typolink>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</f:section>
