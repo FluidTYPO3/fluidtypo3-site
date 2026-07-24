@@ -31,6 +31,7 @@
     "fluidtypo3/vhs": "^8.0",
     "helhum/dotenv-connector": "^3.2",
     "helhum/typo3-console": "^9.0",
+    "networkteam/sentry-client": "^6.0",
     "sentry/sentry": "^4.29",
     "typo3/cms-backend": "^14.3",
     "typo3/cms-core": "^14.3",
