@@ -31,12 +31,21 @@
 </f:section>
 
 <f:section name="Main">
+    {v:content.render(column: 1) | f:format.trim() | f:variable(name: 'content1')}
+    {v:content.render(column: 0) | f:format.trim() | f:variable(name: 'content2')}
     <div class="row gx-lg-5">
-        <aside class="col-12 col-lg-4 col-xxxl-3 mb-4 mb-lg-0" aria-label="Documentation navigation">
-            <v:content.render column="1" />
-        </aside>
-        <div class="col-12 col-lg-8 col-xxxl-9">
-            <v:content.render column="0" />
-        </div>
+        <f:if condition="{content1}">
+            <f:then>
+                <aside class="col-12 col-lg-4 col-xxxl-3 mb-4 mb-lg-0" aria-label="Documentation navigation">
+                    {content1 | f:format.raw()}
+                </aside>
+                <div class="col-12 col-lg-8 col-xxxl-9">
+                    {content2 | f:format.raw()}
+                </div>
+            </f:then>
+            <f:else>
+                {content2 | f:format.raw()}
+            </f:else>
+        </f:if>
     </div>
 </f:section>
