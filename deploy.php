@@ -253,7 +253,6 @@ task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
     'typo3:database_updateschema',
-    'typo3:database_normalize_collations',
     'deploy:publish',
     'typo3:fix_permissions',
 ]);
