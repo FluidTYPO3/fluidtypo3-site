@@ -12,6 +12,7 @@ final readonly class GithubFlavoredMarkdownRenderer
 {
     public function __construct(
         private DocumentationImageProcessor $imageProcessor,
+        private DocumentationHeadingProcessor $headingProcessor,
     ) {}
 
     public function render(string $markdown, ?ServerRequestInterface $request = null): string
@@ -23,6 +24,10 @@ final readonly class GithubFlavoredMarkdownRenderer
         $converter->getEnvironment()->addEventListener(
             DocumentParsedEvent::class,
             fn(DocumentParsedEvent $event) => $this->imageProcessor->process($event, $request),
+        );
+        $converter->getEnvironment()->addEventListener(
+            DocumentParsedEvent::class,
+            $this->headingProcessor->process(...),
         );
         return (string)$converter->convert($markdown);
     }
