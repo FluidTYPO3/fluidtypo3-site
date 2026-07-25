@@ -36,6 +36,41 @@
 
     applyTheme(document.documentElement.getAttribute('data-bs-theme') || 'light');
 
+    const initializeTopbarShadow = () => {
+        const topbar = document.querySelector('.site-topbar');
+        if (!(topbar instanceof HTMLElement)) {
+            return;
+        }
+
+        const headerArea = document.querySelector('.site-subheader, .front-page-hero');
+        let updateRequested = false;
+
+        const update = () => {
+            updateRequested = false;
+            const topbarBottom = topbar.getBoundingClientRect().bottom;
+            const isPastHeader = headerArea instanceof HTMLElement
+                ? headerArea.getBoundingClientRect().bottom <= topbarBottom
+                : window.scrollY > 0;
+
+            topbar.classList.toggle('is-past-header', isPastHeader);
+        };
+
+        const requestUpdate = () => {
+            if (updateRequested) {
+                return;
+            }
+
+            updateRequested = true;
+            window.requestAnimationFrame(update);
+        };
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
+        update();
+    };
+
+    initializeTopbarShadow();
+
     const registerTypoScriptLanguage = (highlighter) => {
         if (highlighter.getLanguage('typoscript')) {
             return;

@@ -7,19 +7,17 @@
 			<span aria-hidden="true">&larr;</span>
 			Back to all examples
 		</a>
-		<header class="library-detail-header">
-			<p class="library-eyebrow mb-2">Code example</p>
-			<h2 class="library-detail-title">{gist.title}</h2>
-			<div class="library-detail-summary">
-				<f:format.html>{gist.summary}</f:format.html>
-			</div>
-		</header>
 		<section class="library-detail-section" aria-labelledby="library-example-details">
-			<h3 id="library-example-details" class="h5 mb-3">Example details</h3>
+			<header class="mb-4">
+				<p class="library-eyebrow mb-2">Code example</p>
+				<h2 class="library-detail-title">{gist.title}</h2>
+				<div class="library-detail-summary">
+					<f:format.html>{gist.summary}</f:format.html>
+				</div>
+			</header>
 			<f:render partial="GistMeta" arguments="{_all}" />
 		</section>
-		<section class="library-detail-section" aria-labelledby="library-example-code">
-			<h3 id="library-example-code" class="h5 mb-3">Code</h3>
+		<section class="library-detail-code-section" aria-label="Code">
 			<div class="library-gist-embed">
 				<f:format.raw>{response.json.div}</f:format.raw>
 			</div>
