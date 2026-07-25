@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/repositories/fluidshare/Tests" isTestSource="true" packagePrefix="FluidTYPO3\Fluidshare\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/repositories/fluidtypo3org/Classes" isTestSource="false" packagePrefix="FluidTYPO3\FluidTYPO3Org\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/apache-solr-for-typo3/solr" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bacon/bacon-qr-code" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/busy-noggin/developer-mcp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/christian-riesen/base32" />
@@ -64,7 +63,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psy/psysh" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ralouphie/getallheaders" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sentry/sentry" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/solarium/solarium" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/clock" />
