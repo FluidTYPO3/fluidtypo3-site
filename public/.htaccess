@@ -292,6 +292,10 @@ AddDefaultCharset utf-8
 	RewriteCond $0#%{REQUEST_URI} ([^#]*)#(.*)\1$
 	RewriteRule ^.*$ - [E=CWD:%2]
 
+	# Redirect legacy .html URLs to their extensionless equivalents.
+	RewriteCond %{THE_REQUEST} "\s/+[^?\s]*\.html(?:[?\s])" [NC]
+	RewriteRule ^(.*)\.html$ https://%{HTTP_HOST}%{ENV:CWD}$1 [R=301,L,NC]
+
 	# API hosts expose application endpoints only; public files belong to the main site.
 	RewriteCond %{HTTP_HOST} ^(?:politikdata-api\.ddev\.site|api(?:-dev)?\.politikdata\.dk)(?::\d+)?$ [NC]
 	RewriteRule ^(?:\.well-known(?:/|$)|_assets(?:/|$)|fileadmin(?:/|$)|generated(?:/|$)|typo3(?:/|$)|typo3temp(?:/|$)|favicon\.ico$|robots\.txt$) - [R=404,L]
