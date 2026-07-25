@@ -11,43 +11,45 @@
 		<h2 class="h5 mb-1">Filter examples</h2>
 		<p class="mb-0 text-body-secondary">Narrow the library by use case or extension.</p>
 	</div>
-	<div class="mb-3">
-		<label class="form-label" for="library-filter-tag">
-			<v:l>text.tags</v:l>
-		</label>
-		<select id="library-filter-tag" name="tx_fluidshare_display[tag]" class="form-select" data-filter-tag>
-			<option value="" data-route-value="">All contexts</option>
-			<f:for each="{tags}" as="tag">
-				<f:if condition="{tag.uid} == {selectedTag}">
-					<f:then>
-						<option value="{tag.uid}" data-route-value="{tag.name}" selected>{tag.name}</option>
-					</f:then>
-					<f:else>
-						<option value="{tag.uid}" data-route-value="{tag.name}">{tag.name}</option>
-					</f:else>
-				</f:if>
-			</f:for>
-		</select>
+	<div class="library-filter-fields">
+		<div class="library-filter-field">
+			<label class="form-label" for="library-filter-tag">
+				<v:l>text.tags</v:l>
+			</label>
+			<select id="library-filter-tag" name="tx_fluidshare_display[tag]" class="form-select" data-filter-tag>
+				<option value="" data-route-value="">All contexts</option>
+				<f:for each="{tags}" as="tag">
+					<f:if condition="{tag.uid} == {selectedTag}">
+						<f:then>
+							<option value="{tag.uid}" data-route-value="{tag.name}" selected>{tag.name}</option>
+						</f:then>
+						<f:else>
+							<option value="{tag.uid}" data-route-value="{tag.name}">{tag.name}</option>
+						</f:else>
+					</f:if>
+				</f:for>
+			</select>
+		</div>
+		<div class="library-filter-field">
+			<label class="form-label" for="library-filter-extension">
+				<v:l>text.extensions</v:l>
+			</label>
+			<select id="library-filter-extension" name="tx_fluidshare_display[extension]" class="form-select" data-filter-extension>
+				<option value="" data-route-value="">All extensions</option>
+				<f:for each="{extensions}" as="extension">
+					<f:if condition="{extension.uid} == {selectedExtension}">
+						<f:then>
+							<option value="{extension.uid}" data-route-value="{extension.extensionKey}" selected>{extension.extensionName}</option>
+						</f:then>
+						<f:else>
+							<option value="{extension.uid}" data-route-value="{extension.extensionKey}">{extension.extensionName}</option>
+						</f:else>
+					</f:if>
+				</f:for>
+			</select>
+		</div>
 	</div>
-	<div class="mb-4">
-		<label class="form-label" for="library-filter-extension">
-			<v:l>text.extensions</v:l>
-		</label>
-		<select id="library-filter-extension" name="tx_fluidshare_display[extension]" class="form-select" data-filter-extension>
-			<option value="" data-route-value="">All extensions</option>
-			<f:for each="{extensions}" as="extension">
-				<f:if condition="{extension.uid} == {selectedExtension}">
-					<f:then>
-						<option value="{extension.uid}" data-route-value="{extension.extensionKey}" selected>{extension.extensionName}</option>
-					</f:then>
-					<f:else>
-						<option value="{extension.uid}" data-route-value="{extension.extensionKey}">{extension.extensionName}</option>
-					</f:else>
-				</f:if>
-			</f:for>
-		</select>
-	</div>
-	<div class="d-grid gap-2">
+	<div class="library-filter-actions d-grid gap-2">
 		<button type="submit" class="btn btn-primary">
 			<v:l>text.filter</v:l>
 		</button>

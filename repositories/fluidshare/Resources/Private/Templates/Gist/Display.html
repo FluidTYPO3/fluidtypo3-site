@@ -2,15 +2,15 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-	<article class="library-detail">
+	<f:page.title>{gist.title} · Code Examples</f:page.title>
+	<article class="library-detail" data-page-title="{gist.title}">
 		<a href="{f:uri.page(pageUid: 6)}" class="library-back-link" data-history-back>
 			<span aria-hidden="true">&larr;</span>
 			Back to all examples
 		</a>
-		<section class="library-detail-section" aria-labelledby="library-example-details">
+		<section class="library-detail-section" aria-label="{gist.title} details">
 			<header class="mb-4">
 				<p class="library-eyebrow mb-2">Code example</p>
-				<h2 class="library-detail-title">{gist.title}</h2>
 				<div class="library-detail-summary">
 					<f:format.html>{gist.summary}</f:format.html>
 				</div>

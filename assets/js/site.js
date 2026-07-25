@@ -71,6 +71,54 @@
 
     initializeTopbarShadow();
 
+    const initializeContextualPageTitle = () => {
+        const titleSource = document.querySelector('[data-page-title]');
+        const pageTitle = document.querySelector('.site-page-title');
+        if (!(titleSource instanceof HTMLElement) || !(pageTitle instanceof HTMLElement)) {
+            return;
+        }
+
+        const title = titleSource.dataset.pageTitle?.trim();
+        if (title) {
+            pageTitle.textContent = title;
+        }
+    };
+
+    initializeContextualPageTitle();
+
+    const initializeDocumentationLocation = () => {
+        const normalizePath = (value) => {
+            const url = new URL(value, window.location.href);
+            const decodedPath = decodeURIComponent(url.pathname).replace(/\/+$/, '');
+            return decodedPath || '/';
+        };
+        const currentPath = normalizePath(window.location.href);
+
+        document.querySelectorAll('.documentation-navigation a[href]').forEach((link) => {
+            if (!(link instanceof HTMLAnchorElement) || normalizePath(link.href) !== currentPath) {
+                return;
+            }
+
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        });
+
+        document.querySelectorAll('[data-documentation-selector]').forEach((selector) => {
+            if (!(selector instanceof HTMLSelectElement)) {
+                return;
+            }
+
+            const activeOption = [...selector.options].find(
+                (option) => option.value && normalizePath(option.value) === currentPath,
+            );
+            if (activeOption) {
+                activeOption.selected = true;
+            }
+        });
+    };
+
+    initializeDocumentationLocation();
+
     const registerTypoScriptLanguage = (highlighter) => {
         if (highlighter.getLanguage('typoscript')) {
             return;

@@ -1,0 +1,51 @@
+{namespace site=FluidTYPO3\FluidTYPO3Org\ViewHelpers}
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page not found · FluidTYPO3</title>
+    <script src="/_assets/fluidtypo3org/theme-init.js?v={site:assetVersion(path: '_assets/fluidtypo3org/theme-init.js')}"></script>
+    <link rel="stylesheet" href="/_assets/bootstrap/bootstrap.css?v={site:assetVersion(path: '_assets/bootstrap/bootstrap.css')}">
+</head>
+<body>
+    <div class="site-error-page">
+        <header class="site-error-topbar">
+            <a class="site-error-brand" href="/" aria-label="FluidTYPO3 home">
+                <img
+                    class="site-error-brand-light"
+                    src="{f:uri.resource(path: 'Images/Brand.svg', extensionName: 'Fluidtypo3org')}"
+                    width="126"
+                    height="60"
+                    alt=""
+                >
+                <img
+                    class="site-error-brand-dark"
+                    src="{f:uri.resource(path: 'Images/BrandDark.svg', extensionName: 'Fluidtypo3org')}"
+                    width="126"
+                    height="60"
+                    alt=""
+                >
+            </a>
+        </header>
+        <main class="site-error-main">
+            <section class="site-error-card" aria-labelledby="site-error-title">
+                <p class="site-error-code">404</p>
+                <p class="library-eyebrow mb-2">Lost route</p>
+                <h1 id="site-error-title">This page could not be found</h1>
+                <p class="site-error-message">
+                    The address may have changed, or the page may no longer exist.
+                    These are the best places to get back on track.
+                </p>
+                <nav class="site-error-actions" aria-label="Recovery links">
+                    <a class="btn btn-primary btn-lg" href="/">Go to the home page</a>
+                    <a class="btn btn-outline-secondary" href="/documentation">Browse documentation</a>
+                    <a class="btn btn-outline-secondary" href="/library/code-examples">Explore code examples</a>
+                    <a class="btn btn-link" href="/search">Search the site</a>
+                </nav>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

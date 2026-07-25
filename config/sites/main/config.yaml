@@ -8,6 +8,11 @@ baseVariants:
     condition: 'applicationContext == "Development"'
 dependencies:
   - typo3/fluid-styled-content
+errorHandling:
+  -
+    errorCode: 404
+    errorHandler: Fluid
+    errorFluidTemplate: 'EXT:fluidtypo3org/Resources/Private/Templates/Error/404.html'
 languages:
   -
     title: English
@@ -72,6 +77,9 @@ routeEnhancers:
         routeFieldName: slug
   Documentation:
     type: Extbase
+    limitToPages:
+      - 5
+      - 10
     extension: Fluidtypo3org
     plugin: DocDetail
     defaultController: 'Documentation::detail'

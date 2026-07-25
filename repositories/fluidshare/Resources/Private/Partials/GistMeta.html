@@ -12,7 +12,11 @@
 	</div>
 	<div class="library-meta-item">
 		<dt><v:l>text.created</v:l></dt>
-		<dd>{response.json.created_at}</dd>
+		<dd>
+			<time datetime="{response.json.created_at}">
+				<f:format.date date="{response.json.created_at}" format="F j, Y" />
+			</time>
+		</dd>
 	</div>
 	<div class="library-meta-item">
 		<dt><v:l>flux.tx_fluidshare_domain_model_gist.fields.extensions</v:l></dt>
