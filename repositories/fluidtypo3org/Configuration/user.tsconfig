@@ -1,0 +1,7 @@
+# Hide Site Management modules that should not be shown by default.
+options.hideModules := addToList(about,site_configuration,pagetsconfig,web_newsAdministration,system_upgrade,content_security_policy,system_environment)
+
+# Hide low-level system and Solr modules that should not be shown by default.
+options.hideModules := addToList(system_reports,system_database,searchbackend_info,searchbackend_coreoptimization)
+
+options.enableBookmarks = 0
