@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "bootstrap/scss/bootstrap" with (
     $primary: #11856f,
     $grid-breakpoints: (
@@ -21,6 +22,14 @@
     )
 );
 @use "package-releases";
+
+$content-element-spacing: (
+    extra-small: 1,
+    small: 2,
+    medium: 3,
+    large: 4,
+    extra-large: 5
+);
 
 :root {
     color-scheme: light;
@@ -695,6 +704,125 @@ html[data-bs-theme="dark"] .site-brand-image-dark {
 .site-footer a:focus-visible {
     color: #ffffff;
     text-decoration-color: rgba(255, 255, 255, 0.55);
+}
+
+@each $name, $size in $content-element-spacing {
+    .frame-space-before-#{$name} {
+        margin-top: map.get(bootstrap.$spacers, $size);
+    }
+
+    .frame-space-after-#{$name} {
+        margin-bottom: map.get(bootstrap.$spacers, $size);
+    }
+}
+
+.frame-layout-1 {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: color-mix(in srgb, var(--bs-tertiary-bg) 32%, var(--bs-body-bg));
+    border: 1px solid color-mix(in srgb, var(--bs-border-color) 55%, var(--bs-body-bg));
+    border-radius: var(--bs-border-radius-lg);
+}
+
+.frame-layout-2,
+.donations-sidebar-box {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: color-mix(in srgb, var(--fluidtypo3-subheader-inset) 42%, var(--bs-body-bg));
+    border: 1px solid color-mix(in srgb, var(--bs-primary) 20%, var(--bs-border-color));
+    border-radius: var(--bs-border-radius-lg);
+}
+
+:is(.frame-layout-1, .frame-layout-2, .frame-layout-3) p:last-child {
+    margin-bottom: 0;
+}
+
+.donation-history {
+    container-name: donation-history;
+    container-type: inline-size;
+}
+
+.donation-history-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.donation-history-eyebrow {
+    margin-bottom: 0.35rem;
+    color: var(--bs-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.donation-history-heading {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.donation-history-intro {
+    margin-bottom: 0;
+    color: var(--bs-secondary-color);
+    font-size: 0.9rem;
+}
+
+.donation-history-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.donation-history-month {
+    padding: 0.9rem 1rem;
+    background: color-mix(in srgb, var(--bs-body-bg) 82%, var(--bs-tertiary-bg));
+    border: 1px solid color-mix(in srgb, var(--bs-border-color) 65%, var(--bs-body-bg));
+    border-radius: var(--bs-border-radius);
+}
+
+.donation-history-month-active {
+    border-color: color-mix(in srgb, var(--bs-primary) 42%, var(--bs-border-color));
+}
+
+.donation-history-month-heading {
+    margin-bottom: 0.65rem;
+    color: var(--bs-emphasis-color);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.donation-history-values > div {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.donation-history-values > div + div {
+    margin-top: 0.25rem;
+}
+
+.donation-history-values dt {
+    color: var(--bs-secondary-color);
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.donation-history-values dd {
+    margin-bottom: 0;
+    color: var(--bs-emphasis-color);
+    font-variant-numeric: tabular-nums;
+    font-weight: 650;
+}
+
+.donation-history-values .donation-history-balance {
+    margin-top: 0.55rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid var(--bs-border-color);
+}
+
+@container donation-history (min-width: 38rem) {
+    .donation-history-list {
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    }
 }
 
 .library-sidebar:empty {
@@ -1506,6 +1634,7 @@ html[data-bs-theme="dark"] .library-submission-intro,
 html[data-bs-theme="dark"] .library-submission-form,
 html[data-bs-theme="dark"] .library-confirmation,
 html[data-bs-theme="dark"] .library-empty-state,
+html[data-bs-theme="dark"] .frame-layout-1,
 html[data-bs-theme="dark"] .documentation-subfolder-chip,
 html[data-bs-theme="dark"] .documentation-detail-document-link {
     background: color-mix(in srgb, var(--bs-tertiary-bg) 12%, var(--bs-body-bg));
@@ -1787,6 +1916,37 @@ html[data-bs-theme="dark"] .documentation-detail-document-link {
     .site-search-submit,
     .theme-toggle {
         min-height: 2.5rem;
+    }
+}
+
+@include bootstrap.media-breakpoint-up(xxxl) {
+    .donations-layout:has(> .donations-sidebar) {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: var(--bs-gutter-x);
+        align-items: stretch;
+        margin-inline: 0;
+        margin-bottom: map.get(bootstrap.$spacers, 4);
+    }
+
+    .donations-layout:has(> .donations-sidebar) > .donations-content,
+    .donations-layout:has(> .donations-sidebar) > .donations-sidebar {
+        display: contents;
+    }
+
+    .donations-layout:has(> .donations-sidebar) > .donations-content > .frame {
+        grid-column: span 5;
+        height: 100%;
+        margin-block: 0;
+    }
+
+    .donations-layout:has(> .donations-sidebar) > .donations-content > .frame:nth-child(2) {
+        grid-column: span 4;
+    }
+
+    .donations-layout:has(> .donations-sidebar) .donations-sidebar-box {
+        grid-column: span 3;
+        height: 100%;
     }
 }
 
