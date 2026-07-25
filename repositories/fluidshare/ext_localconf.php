@@ -11,7 +11,6 @@ ExtensionUtility::configurePlugin(
 	'Fluidshare',
 	'Display',
 	[GistController::class => 'list'],
-	[GistController::class => 'list'],
 );
 
 ExtensionUtility::configurePlugin(
@@ -23,7 +22,6 @@ ExtensionUtility::configurePlugin(
 ExtensionUtility::configurePlugin(
 	'Fluidshare',
 	'Filter',
-	[GistController::class => 'list'],
 	[GistController::class => 'list'],
 );
 
