@@ -21,18 +21,12 @@
                 </li>
             </f:for>
         </ul>
-        <v:menu pageUid="1" showHiddenInMenu="true" as="utilityMenu">
-            <ul class="navbar-nav">
-                <f:for each="{utilityMenu}" as="item">
-                    <f:if condition="{item.uid} == 11">
-                        <li class="nav-item">
-                            <a class="nav-link px-lg-3 py-3 {item.class}" href="{item.link}">
-                                {item.linktext}
-                            </a>
-                        </li>
-                    </f:if>
-                </f:for>
-            </ul>
-        </v:menu>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <f:link.page pageUid="11" class="nav-link px-lg-3 py-3">
+                    Donate
+                </f:link.page>
+            </li>
+        </ul>
     </div>
 </v:menu>
