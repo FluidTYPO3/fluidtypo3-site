@@ -36,6 +36,78 @@
 
     applyTheme(document.documentElement.getAttribute('data-bs-theme') || 'light');
 
+    const registerTypoScriptLanguage = (highlighter) => {
+        if (highlighter.getLanguage('typoscript')) {
+            return;
+        }
+
+        highlighter.registerLanguage('typoscript', (hljs) => ({
+            name: 'TypoScript',
+            aliases: ['tsconfig'],
+            case_insensitive: true,
+            contains: [
+                hljs.COMMENT(/^\s*#/, /$/),
+                hljs.COMMENT(/\/\//, /$/),
+                {
+                    className: 'variable',
+                    begin: /\{\$[a-z0-9_.-]+}/,
+                },
+                {
+                    className: 'attribute',
+                    begin: /^\s*[a-z0-9_.-]+(?=\s*(?:=|<|:=|=<))/,
+                },
+                {
+                    className: 'operator',
+                    begin: /:=|=<|<=|[={}()<>]/,
+                },
+                hljs.QUOTE_STRING_MODE,
+                hljs.NUMBER_MODE,
+            ],
+        }));
+    };
+
+    const initializeDocumentationCodeBlocks = () => {
+        const highlighter = window.hljs;
+        if (!highlighter) {
+            return;
+        }
+
+        registerTypoScriptLanguage(highlighter);
+
+        document.querySelectorAll('.documentation-markdown pre > code[class*="language-"]').forEach((code) => {
+            const pre = code.parentElement;
+            const languageClass = [...code.classList].find((className) => className.startsWith('language-'));
+            if (!(pre instanceof HTMLPreElement) || !languageClass) {
+                return;
+            }
+
+            const language = languageClass.substring('language-'.length);
+            if (highlighter.getLanguage(language)) {
+                highlighter.highlightElement(code);
+            } else {
+                code.classList.add('hljs');
+            }
+
+            const source = code.textContent.replace(/\r\n?/g, '\n').replace(/\n$/, '');
+            const lineCount = source === '' ? 1 : source.split('\n').length;
+            const lineNumbers = document.createElement('span');
+            lineNumbers.className = 'documentation-code-line-numbers';
+            lineNumbers.setAttribute('aria-hidden', 'true');
+            lineNumbers.textContent = Array.from(
+                { length: lineCount },
+                (_, index) => index + 1,
+            ).join('\n');
+
+            const codeBlock = document.createElement('div');
+            codeBlock.className = 'documentation-code-block';
+            pre.before(codeBlock);
+            pre.classList.add('documentation-code-content');
+            codeBlock.append(lineNumbers, pre);
+        });
+    };
+
+    initializeDocumentationCodeBlocks();
+
     const searchInput = document.querySelector('.site-search-input');
     const searchTerm = new URLSearchParams(window.location.search).get('tx_solr[q]');
     if (searchInput instanceof HTMLInputElement && searchTerm !== null) {
