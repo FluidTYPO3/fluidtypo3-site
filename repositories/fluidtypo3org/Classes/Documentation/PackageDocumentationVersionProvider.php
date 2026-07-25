@@ -47,9 +47,22 @@ final readonly class PackageDocumentationVersionProvider
      */
     public function getPackages(): array
     {
+        $versionsByPackage = [];
+        foreach (self::PACKAGES as $index => $package) {
+            $versionsByPackage[$index] = $this->fetchMinorVersions(
+                $package['feedUrl'],
+                $package['tagsApiUrl'],
+            );
+        }
+        $targetVersionCount = max(array_map(count(...), $versionsByPackage));
+
         $packages = [];
-        foreach (self::PACKAGES as $package) {
-            $versions = $this->fetchMinorVersions($package['feedUrl'], $package['tagsApiUrl']);
+        foreach (self::PACKAGES as $index => $package) {
+            $versions = $this->expandMinorVersionsToCount(
+                $versionsByPackage[$index],
+                $package['tagsApiUrl'],
+                $targetVersionCount,
+            );
             $packages[] = [
                 'key' => $package['key'],
                 'name' => $package['name'],
@@ -123,6 +136,28 @@ final readonly class PackageDocumentationVersionProvider
         );
 
         return $versions;
+    }
+
+    /**
+     * @param list<string> $versions
+     * @return list<string>
+     */
+    private function expandMinorVersionsToCount(array $versions, string $tagsApiUrl, int $targetCount): array
+    {
+        if (count($versions) >= $targetCount) {
+            return $versions;
+        }
+
+        $versions = array_values(array_unique([
+            ...$versions,
+            ...$this->fetchApiMinorVersions($tagsApiUrl),
+        ]));
+        usort(
+            $versions,
+            static fn(string $left, string $right): int => version_compare($right, $left),
+        );
+
+        return array_slice($versions, 0, $targetCount);
     }
 
     /**
@@ -234,14 +269,11 @@ final readonly class PackageDocumentationVersionProvider
     private function buildDocumentationVersions(array $versions, string $documentationUrlPattern): array
     {
         $documentationVersions = [];
-        foreach ($versions as $index => $version) {
-            $nextVersion = $versions[$index + 1] ?? null;
-            $currentMajor = strstr($version, '.', true);
-            $nextMajor = $nextVersion !== null ? strstr($nextVersion, '.', true) : null;
+        foreach ($versions as $version) {
             $documentationVersions[] = [
                 'version' => $version,
                 'url' => sprintf($documentationUrlPattern, $version),
-                'isMajorRelease' => $nextVersion === null || $currentMajor !== $nextMajor,
+                'isMajorRelease' => str_ends_with($version, '.0'),
             ];
         }
 
