@@ -8,113 +8,120 @@
 			{flashMessages -> f:format.raw()}
 		</div>
 	</f:if>
-	<div class="library-submission-intro">
-		<p class="library-eyebrow mb-2">Share with the community</p>
-		<h2 class="h3 mb-2">Submit a GitHub Gist</h2>
-		<p class="mb-0 text-body-secondary">
-			Add a concise title and summary, then classify the example so other developers can find it.
-			Submissions are reviewed before publishing.
-		</p>
+
+	<div class="row">
+		<aside class="col-12 col-lg-4 col-xxxl-3 mb-4 mb-lg-0" aria-label="Library share">
+			<div class="library-submission-intro">
+				<p class="library-eyebrow mb-2">Share with the community</p>
+				<h2 class="h3 mb-2">Submit a GitHub Gist</h2>
+				<p class="mb-0 text-body-secondary">
+					Add a concise title and summary, then classify the example so other developers can find it.
+					Submissions are reviewed before publishing.
+				</p>
+			</div>
+		</aside>
+		<div class="col-12 col-lg-8 col-xxxl-9 library-form">
+			<f:form action="confirm" object="{gist}" method="post" name="gist" class="library-submission-form">
+				<div class="mb-4">
+					<label class="form-label" for="gist-url">
+						<v:l>flux.tx_fluidshare_domain_model_gist.fields.url</v:l>
+					</label>
+					<f:form.textfield
+						id="gist-url"
+						property="url"
+						class="form-control form-control-lg"
+						additionalAttributes="{required: 'required', inputmode: 'url', placeholder: 'https://gist.github.com/username/gist-id', aria-describedby: 'gist-url-help'}"
+					/>
+					<div id="gist-url-help" class="form-text">Use the public URL of a GitHub Gist.</div>
+					<f:render section="Message" arguments="{property: 'gist.url'}" />
+				</div>
+				<div class="mb-4">
+					<label class="form-label" for="gist-title">
+						<v:l>flux.tx_fluidshare_domain_model_gist.fields.title</v:l>
+					</label>
+					<f:form.textfield
+						id="gist-title"
+						property="title"
+						class="form-control form-control-lg"
+						additionalAttributes="{required: 'required', placeholder: 'What does this example demonstrate?'}"
+					/>
+					<f:render section="Message" arguments="{property: 'gist.title'}" />
+				</div>
+				<div class="mb-4">
+					<label class="form-label" for="gist-summary">
+						<v:l>flux.tx_fluidshare_domain_model_gist.fields.summary</v:l>
+					</label>
+					<f:form.textarea
+						id="gist-summary"
+						property="summary"
+						class="form-control"
+						rows="5"
+						additionalAttributes="{required: 'required', placeholder: 'Explain the use case and what developers will learn.'}"
+					/>
+					<f:render section="Message" arguments="{property: 'gist.summary'}" />
+				</div>
+				<div class="library-form-options">
+					<fieldset class="library-option-group">
+						<legend class="h5">
+							<v:l>flux.tx_fluidshare_domain_model_gist.fields.extensions</v:l>
+						</legend>
+						<p class="small text-body-secondary">Select every extension used by the example.</p>
+						<f:for each="{extensions}" as="extension">
+							<div class="form-check">
+								<f:form.checkbox
+									id="library-extension-{extension.uid}"
+									property="extensions"
+									value="{extension.uid}"
+									multiple="1"
+									class="form-check-input"
+								/>
+								<label class="form-check-label" for="library-extension-{extension.uid}">
+									{extension.extensionName}
+								</label>
+							</div>
+						</f:for>
+					</fieldset>
+					<fieldset class="library-option-group">
+						<legend class="h5">
+							<v:l>flux.tx_fluidshare_domain_model_gist.fields.tags</v:l>
+						</legend>
+						<p class="small text-body-secondary">Choose the contexts where this pattern is useful.</p>
+						<f:for each="{tags}" as="tag">
+							<div class="form-check">
+								<f:form.checkbox
+									id="library-tag-{tag.uid}"
+									property="tags"
+									value="{tag.uid}"
+									multiple="1"
+									class="form-check-input"
+								/>
+								<label class="form-check-label" for="library-tag-{tag.uid}">
+									{tag.name}
+								</label>
+							</div>
+						</f:for>
+					</fieldset>
+				</div>
+				<div class="library-form-actions">
+					<button type="submit" class="btn btn-primary btn-lg">
+						Review submission
+						<span aria-hidden="true">&rarr;</span>
+					</button>
+				</div>
+			</f:form>
+		</div>
 	</div>
-	<f:form action="confirm" object="{gist}" method="post" name="gist" class="library-submission-form">
-		<div class="mb-4">
-			<label class="form-label" for="gist-url">
-				<v:l>flux.tx_fluidshare_domain_model_gist.fields.url</v:l>
-			</label>
-			<f:form.textfield
-				id="gist-url"
-				property="url"
-				class="form-control form-control-lg"
-				additionalAttributes="{required: 'required', inputmode: 'url', placeholder: 'https://gist.github.com/username/gist-id', aria-describedby: 'gist-url-help'}"
-			/>
-			<div id="gist-url-help" class="form-text">Use the public URL of a GitHub Gist.</div>
-			<f:render section="Message" arguments="{property: 'gist.url'}" />
-		</div>
-		<div class="mb-4">
-			<label class="form-label" for="gist-title">
-				<v:l>flux.tx_fluidshare_domain_model_gist.fields.title</v:l>
-			</label>
-			<f:form.textfield
-				id="gist-title"
-				property="title"
-				class="form-control form-control-lg"
-				additionalAttributes="{required: 'required', placeholder: 'What does this example demonstrate?'}"
-			/>
-			<f:render section="Message" arguments="{property: 'gist.title'}" />
-		</div>
-		<div class="mb-4">
-			<label class="form-label" for="gist-summary">
-				<v:l>flux.tx_fluidshare_domain_model_gist.fields.summary</v:l>
-			</label>
-			<f:form.textarea
-				id="gist-summary"
-				property="summary"
-				class="form-control"
-				rows="5"
-				additionalAttributes="{required: 'required', placeholder: 'Explain the use case and what developers will learn.'}"
-			/>
-			<f:render section="Message" arguments="{property: 'gist.summary'}" />
-		</div>
-		<div class="library-form-options">
-			<fieldset class="library-option-group">
-				<legend class="h5">
-				<v:l>flux.tx_fluidshare_domain_model_gist.fields.extensions</v:l>
-				</legend>
-				<p class="small text-body-secondary">Select every extension used by the example.</p>
-				<f:for each="{extensions}" as="extension">
-					<div class="form-check">
-						<f:form.checkbox
-							id="library-extension-{extension.uid}"
-							property="extensions"
-							value="{extension.uid}"
-							multiple="1"
-							class="form-check-input"
-						/>
-						<label class="form-check-label" for="library-extension-{extension.uid}">
-							{extension.extensionName}
-						</label>
-					</div>
-				</f:for>
-			</fieldset>
-			<fieldset class="library-option-group">
-				<legend class="h5">
-				<v:l>flux.tx_fluidshare_domain_model_gist.fields.tags</v:l>
-				</legend>
-				<p class="small text-body-secondary">Choose the contexts where this pattern is useful.</p>
-				<f:for each="{tags}" as="tag">
-					<div class="form-check">
-						<f:form.checkbox
-							id="library-tag-{tag.uid}"
-							property="tags"
-							value="{tag.uid}"
-							multiple="1"
-							class="form-check-input"
-						/>
-						<label class="form-check-label" for="library-tag-{tag.uid}">
-							{tag.name}
-						</label>
-					</div>
-				</f:for>
-			</fieldset>
-		</div>
-		<div class="library-form-actions">
-			<button type="submit" class="btn btn-primary btn-lg">
-				Review submission
-				<span aria-hidden="true">&rarr;</span>
-			</button>
-		</div>
-	</f:form>
 </f:section>
 
 <f:section name="Message">
 	<f:form.validationResults for="{property}">
 		<f:if condition="{validationResults.errors}">
 			<div class="invalid-feedback d-block">
-					{property -> v:iterator.explode(glue: '.') -> v:iterator.last() -> v:variable.set(name: 'propertyName')}
-					<f:for each="{validationResults.errors}" as="error" iteration="iterator">
-						{v:l(key: 'flux.tx_fluidshare_domain_model_gist.fields.{propertyName}.errors.{error.code}', htmlEscape: 0)
-						-> v:or(alternative: '{v:l(key: \'errors.{error.code}\', htmlEscape: 0)}')}
-					</f:for>
+				{property -> v:iterator.explode(glue: '.') -> v:iterator.last() -> v:variable.set(name: 'propertyName')}
+				<f:for each="{validationResults.errors}" as="error" iteration="iterator">
+					{v:l(key: 'flux.tx_fluidshare_domain_model_gist.fields.{propertyName}.errors.{error.code}', htmlEscape: 0)
+					-> v:or(alternative: '{v:l(key: \'errors.{error.code}\', htmlEscape: 0)}')}
+				</f:for>
 			</div>
 		</f:if>
 	</f:form.validationResults>
