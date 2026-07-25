@@ -1682,7 +1682,7 @@ html[data-bs-theme="dark"] .documentation-detail-document-link {
         flex-basis: 100%;
     }
 
-    .site-topbar .navbar-nav {
+    .site-topbar .navbar-nav:last-child {
         padding-bottom: 0.75rem;
     }
 
