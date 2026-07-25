@@ -19,3 +19,19 @@ CREATE TABLE tx_fluidtypo3org_search_index (
     KEY source_uid (source_uid),
     KEY title_normalized (title_normalized(191))
 );
+
+CREATE TABLE tx_fluidtypo3org_donation (
+    uid int unsigned NOT NULL auto_increment,
+    pid int unsigned DEFAULT 0 NOT NULL,
+    tstamp int unsigned DEFAULT 0 NOT NULL,
+    crdate int unsigned DEFAULT 0 NOT NULL,
+    cruser_id int unsigned DEFAULT 0 NOT NULL,
+    deleted smallint unsigned DEFAULT 0 NOT NULL,
+    hidden smallint unsigned DEFAULT 0 NOT NULL,
+    donation_date int unsigned DEFAULT 0 NOT NULL,
+    amount decimal(12,2) DEFAULT '0.00' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY donation_date (donation_date)
+);

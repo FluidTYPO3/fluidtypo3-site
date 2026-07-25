@@ -7,6 +7,9 @@
             <flux:grid.column colPos="0" label="Donation body" />
             <flux:grid.column colPos="1" label="Additional content" />
         </flux:grid.row>
+        <flux:grid.row>
+            <flux:grid.column colPos="2" label="Donation body" colspan="2" />
+        </flux:grid.row>
     </flux:grid>
 </f:section>
 
@@ -24,12 +27,19 @@
                     {bodyContent | f:format.raw()}
                 </div>
                 <aside class="col-12 col-lg-4 col-xxxl-3 mt-4 mt-lg-0 donations-sidebar" aria-label="Additional donation information">
-                    {additionalContent | f:format.raw()}
+                    <div class="donations-sidebar-box">
+                        {additionalContent | f:format.raw()}
+                    </div>
                 </aside>
             </f:then>
             <f:else>
                 {bodyContent | f:format.raw()}
             </f:else>
         </f:if>
+    </div>
+    <div class="row gx-lg-5 donations-layout">
+        <div class="col-12">
+            <v:content.render column="2" />
+        </div>
     </div>
 </f:section>

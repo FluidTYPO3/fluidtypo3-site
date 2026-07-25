@@ -1,0 +1,54 @@
+{namespace site=FluidTYPO3\FluidTYPO3Org\ViewHelpers}
+<f:layout name="Content" />
+
+<f:section name="Configuration">
+    <flux:form
+        id="donations-history"
+        label="Donations history"
+        description="Shows received funds, withdrawals, and the running balance for the last six completed months."
+        options="{group: 'FluidTYPO3'}"
+    />
+</f:section>
+
+<f:section name="Preview">
+    <strong>Donations history</strong>
+    <span> · Last six completed months</span>
+</f:section>
+
+<f:section name="Main">
+    <f:variable name="months" value="{site:donationHistory()}" />
+
+    <section class="donation-history" aria-labelledby="donation-history-heading">
+        <header class="donation-history-header">
+            <p class="donation-history-eyebrow">Transparency</p>
+            <h2 class="donation-history-heading" id="donation-history-heading">Last six months</h2>
+            <p class="donation-history-intro">
+                Completed calendar months only. The current month appears after it closes.
+            </p>
+        </header>
+
+        <ol class="donation-history-list list-unstyled mb-0">
+            <f:for each="{months}" as="month">
+                <li class="donation-history-month {f:if(condition: month.hasActivity, then: 'donation-history-month-active')}">
+                    <h3 class="donation-history-month-heading">
+                        <time datetime="{month.date}">{month.label}</time>
+                    </h3>
+                    <dl class="donation-history-values mb-0">
+                        <div>
+                            <dt>Received</dt>
+                            <dd>{month.received}</dd>
+                        </div>
+                        <div>
+                            <dt>Withdrawn</dt>
+                            <dd>{month.withdrawn}</dd>
+                        </div>
+                        <div class="donation-history-balance">
+                            <dt>Remaining</dt>
+                            <dd>{month.remaining}</dd>
+                        </div>
+                    </dl>
+                </li>
+            </f:for>
+        </ol>
+    </section>
+</f:section>
