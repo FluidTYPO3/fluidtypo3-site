@@ -57,13 +57,6 @@ host('production')
     ->set('branch', 'main')
     ->set('labels', ['stage' => 'production']);
 
-host('legacy')
-    ->setHostname('10.0.0.1')
-    ->setRemoteUser('claus')
-    ->setDeployPath('/var/www/legacy.fluidtypo3.org')
-    ->set('branch', 'main')
-    ->set('labels', ['stage' => 'development']);
-
 host('local')->setLabels(['stage' => 'local'])->setDeployPath(trim(shell_exec('pwd')));
 
 // Sync tasks. Transfers DB and files from production server to the specified environment.
