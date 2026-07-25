@@ -1,0 +1,35 @@
+<f:layout name="Page" />
+
+<f:section name="Configuration">
+    <flux:form id="donations-fluidtypo3org" label="Donations" />
+    <flux:grid>
+        <flux:grid.row>
+            <flux:grid.column colPos="0" label="Donation body" />
+            <flux:grid.column colPos="1" label="Additional content" />
+        </flux:grid.row>
+    </flux:grid>
+</f:section>
+
+<f:section name="Header">
+    <f:render partial="Page/PrimaryNavigation" />
+</f:section>
+
+<f:section name="Main">
+    {v:content.render(column: 0) | f:format.trim() | f:variable(name: 'bodyContent')}
+    {v:content.render(column: 1) | f:format.trim() | f:variable(name: 'additionalContent')}
+    <div class="row gx-lg-5 donations-layout">
+        <f:if condition="{additionalContent}">
+            <f:then>
+                <div class="col-12 col-lg-8 col-xxxl-9 donations-content">
+                    {bodyContent | f:format.raw()}
+                </div>
+                <aside class="col-12 col-lg-4 col-xxxl-3 mt-4 mt-lg-0 donations-sidebar" aria-label="Additional donation information">
+                    {additionalContent | f:format.raw()}
+                </aside>
+            </f:then>
+            <f:else>
+                {bodyContent | f:format.raw()}
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
