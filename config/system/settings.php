@@ -70,20 +70,13 @@ return [
             'reportUserInformation' => 'userid',
             'showEventId' => '1',
         ],
-        'solr' => [
-            'allowSelfSignedCertificates' => '0',
-            'enableRouteEnhancer' => '0',
-            'includeGlobalQParameterInCacheHash' => '0',
-            'monitoringType' => '0',
-            'pluginNamespaces' => 'tx_solr',
-            'useConfigurationFromClosestTemplate' => '0',
-            'useConfigurationMonitorTables' => '',
-            'useConfigurationTrackRecordsOutsideSiteroot' => '1',
-        ],
     ],
     'FE' => [
         'cacheHash' => [
             'enforceValidation' => true,
+            'excludedParameters' => [
+                'q',
+            ],
         ],
         'debug' => false,
         'disableNoCacheParameter' => true,

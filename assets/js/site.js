@@ -109,7 +109,7 @@
     initializeDocumentationCodeBlocks();
 
     const searchInput = document.querySelector('.site-search-input');
-    const searchTerm = new URLSearchParams(window.location.search).get('tx_solr[q]');
+    const searchTerm = new URLSearchParams(window.location.search).get('q');
     if (searchInput instanceof HTMLInputElement && searchTerm !== null) {
         searchInput.value = searchTerm;
     }

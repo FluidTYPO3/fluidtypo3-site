@@ -28,6 +28,18 @@ defined('TYPO3') or die();
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'fluidtypo3org',
+    'Search',
+    [
+        \FluidTYPO3\FluidTYPO3Org\Controller\SearchController::class => 'results',
+    ],
+    [
+        \FluidTYPO3\FluidTYPO3Org\Controller\SearchController::class => 'results',
+    ],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
+);
+
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['SafeDocumentationSegmentMapper'] =
     \FluidTYPO3\FluidTYPO3Org\Integration\Routing\SafeDocumentationSegmentMapper::class;
 

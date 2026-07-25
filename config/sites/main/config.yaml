@@ -8,7 +8,6 @@ baseVariants:
     condition: 'applicationContext == "Development"'
 dependencies:
   - typo3/fluid-styled-content
-  - apache-solr-for-typo3/solr
 languages:
   -
     title: English
@@ -18,7 +17,6 @@ languages:
     locale: en_US.UTF-8
     navigationTitle: English
     flag: us
-    solr_core_read: core_en
 rootPageId: 1
 routeEnhancers:
   FluidshareList:
@@ -107,10 +105,4 @@ routeEnhancers:
         type: SafeDocumentationSegmentMapper
       segment3:
         type: SafeDocumentationSegmentMapper
-solr_enabled_read: true
-solr_host_read: '%env(TYPO3_SOLR_HOST)%'
-solr_path_read: /
-solr_port_read: '8983'
-solr_scheme_read: http
-solr_use_write_connection: false
 websiteTitle: ''

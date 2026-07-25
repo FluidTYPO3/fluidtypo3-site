@@ -33,3 +33,15 @@ $GLOBALS['TCA']['tt_content']['types'][$detailSignature]['showitem'] = '
     --palette--;;headers,
     pi_flexform,
 ';
+
+$searchSignature = ExtensionUtility::registerPlugin(
+    'fluidtypo3org',
+    'Search',
+    'Site search',
+    'content-plugin',
+    'plugins',
+    'Search the normalized documentation and Library metadata index.',
+);
+$GLOBALS['TCA']['tt_content']['types'][$searchSignature]['showitem'] = '
+    --palette--;;headers,
+';

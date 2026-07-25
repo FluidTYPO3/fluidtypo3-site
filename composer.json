@@ -24,7 +24,6 @@
   ],
   "require": {
     "php": "^8.5",
-    "apache-solr-for-typo3/solr": "^14.0@dev",
     "fluidtypo3/fluidshare": "@dev",
     "fluidtypo3/fluidtypo3org": "dev-main",
     "fluidtypo3/flux": "^12.0",

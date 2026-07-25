@@ -1,0 +1,92 @@
+<section class="site-search-results" aria-labelledby="site-search-results-title">
+    <h2 id="site-search-results-title" class="visually-hidden">Search results</h2>
+
+    <form method="get" action="{f:uri.page()}" class="site-search-results-form mb-4" role="search">
+        <label class="form-label" for="site-search-results-query">Search documentation and code examples</label>
+        <div class="input-group">
+            <input
+                class="form-control"
+                id="site-search-results-query"
+                type="search"
+                name="q"
+                value="{query}"
+                maxlength="100"
+                autocomplete="off"
+            />
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <f:if condition="{searched}">
+        <f:then>
+            <f:if condition="{indexedRecordCount}">
+                <f:then>
+                    <p class="text-body-secondary mb-4">
+                        <f:if condition="{resultCount}">
+                            <f:then>
+                                {resultCount} result<f:if condition="{resultCount} != 1">s</f:if> for
+                                <strong>“{query}”</strong>
+                            </f:then>
+                            <f:else>
+                                No results found for <strong>“{query}”</strong>.
+                            </f:else>
+                        </f:if>
+                    </p>
+
+                    <f:if condition="{results}">
+                        <ol class="site-search-result-list list-unstyled">
+                            <f:for each="{results}" as="result">
+                                <li>
+                                    <article class="site-search-result">
+                                        <span class="site-search-result-type">{result.typeLabel}</span>
+                                        <h3 class="h4 mb-2">
+                                            <f:switch expression="{result.type}">
+                                                <f:case value="docs">
+                                                    <f:link.action
+                                                        pageUid="{documentationPageUid}"
+                                                        extensionName="Fluidtypo3org"
+                                                        pluginName="DocDetail"
+                                                        controller="Documentation"
+                                                        action="detail"
+                                                        arguments="{result.routeArguments}"
+                                                    >
+                                                        {result.title}
+                                                    </f:link.action>
+                                                </f:case>
+                                                <f:case value="code_example">
+                                                    <f:link.action
+                                                        pageUid="{libraryDetailPageUid}"
+                                                        extensionName="Fluidshare"
+                                                        pluginName="Detail"
+                                                        controller="Gist"
+                                                        action="display"
+                                                        arguments="{gist: result.sourceUid}"
+                                                    >
+                                                        {result.title}
+                                                    </f:link.action>
+                                                </f:case>
+                                            </f:switch>
+                                        </h3>
+                                        <f:if condition="{result.summary}">
+                                            <p class="mb-0">{result.summary}</p>
+                                        </f:if>
+                                    </article>
+                                </li>
+                            </f:for>
+                        </ol>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <div class="site-search-empty">
+                        The search index has not been built yet.
+                    </div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <p class="text-body-secondary mb-0">
+                Enter one or more words to search the documentation and Library.
+            </p>
+        </f:else>
+    </f:if>
+</section>
