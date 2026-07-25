@@ -67,7 +67,7 @@
 				<source>Gist URL is required</source>
 			</trans-unit>
 			<trans-unit id="flux.tx_fluidshare_domain_model_gist.fields.url.errors.1221565130">
-				<source><![CDATA[Gist URL must start with <strong>https://gist.github.com/</strong>]]></source>
+				<source><![CDATA[Enter a GitHub Gist URL in the form <strong>https://gist.github.com/username/gist-id</strong>]]></source>
 			</trans-unit>
 			<trans-unit id="button.submit">
 				<source>Add Gist to library</source>

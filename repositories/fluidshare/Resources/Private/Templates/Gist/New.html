@@ -61,14 +61,14 @@
 				<v:l>flux.tx_fluidshare_domain_model_gist.fields.extensions</v:l>
 				</legend>
 				<p class="small text-body-secondary">Select every extension used by the example.</p>
-				<f:for each="{extensions}" as="extension" iteration="iterator">
+				<f:for each="{extensions}" as="extension">
 					<div class="form-check">
 						<f:form.checkbox
 							id="library-extension-{extension.uid}"
-							name="gist[extensions][]"
+							property="extensions"
 							value="{extension.uid}"
+							multiple="1"
 							class="form-check-input"
-							checked="{v:condition.iterator.contains(haystack: submission.extensions, needle: extension.uid, then: 'checked')}"
 						/>
 						<label class="form-check-label" for="library-extension-{extension.uid}">
 							{extension.extensionName}
@@ -81,14 +81,14 @@
 				<v:l>flux.tx_fluidshare_domain_model_gist.fields.tags</v:l>
 				</legend>
 				<p class="small text-body-secondary">Choose the contexts where this pattern is useful.</p>
-				<f:for each="{tags}" as="tag" iteration="iterator">
+				<f:for each="{tags}" as="tag">
 					<div class="form-check">
 						<f:form.checkbox
 							id="library-tag-{tag.uid}"
-							name="gist[tags][]"
+							property="tags"
 							value="{tag.uid}"
+							multiple="1"
 							class="form-check-input"
-							checked="{v:condition.iterator.contains(haystack: submission.tags, needle: tag.uid, then: 1)}"
 						/>
 						<label class="form-check-label" for="library-tag-{tag.uid}">
 							{tag.name}

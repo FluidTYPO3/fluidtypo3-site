@@ -1,6 +1,8 @@
 <?php
 namespace FluidTYPO3\Fluidshare\Domain\Model;
 
+use FluidTYPO3\Fluidshare\Validation\Validator\GistUrlValidator;
+use TYPO3\CMS\Extbase\Attribute\Validate;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -19,10 +21,10 @@ class Gist extends AbstractEntity {
 	protected $slug = '';
 
 	/**
-	 * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-	 * @TYPO3\CMS\Extbase\Annotation\Validate("RegularExpression", options={"regularExpression": "/^https\:\/\/gist\.github\.com\//"})
 	 * @var string
 	 */
+	#[Validate('NotEmpty')]
+	#[Validate(GistUrlValidator::class)]
 	protected $url;
 
 	/**

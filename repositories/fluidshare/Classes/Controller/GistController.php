@@ -7,11 +7,13 @@ use FluidTYPO3\Fluidshare\Domain\Repository\GistRepository;
 use FluidTYPO3\Fluidshare\Domain\Repository\TagRepository;
 use FluidTYPO3\Fluidshare\Fetcher\GistDataFetcher;
 use FluidTYPO3\Fluidshare\Fetcher\Response;
+use FluidTYPO3\Fluidshare\Notification\SubmissionNotification;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class GistController
@@ -36,6 +38,10 @@ class GistController extends ActionController {
 	protected $extensionRepository;
 
 	protected AssetCollector $assetCollector;
+
+	protected SubmissionNotification $submissionNotification;
+
+	protected PersistenceManagerInterface $persistenceManager;
 
 	/**
 	 * @param GistRepository $gistRepository
@@ -64,6 +70,16 @@ class GistController extends ActionController {
 	public function injectAssetCollector(AssetCollector $assetCollector): void
 	{
 		$this->assetCollector = $assetCollector;
+	}
+
+	public function injectSubmissionNotification(SubmissionNotification $submissionNotification): void
+	{
+		$this->submissionNotification = $submissionNotification;
+	}
+
+	public function injectPersistenceManager(PersistenceManagerInterface $persistenceManager): void
+	{
+		$this->persistenceManager = $persistenceManager;
 	}
 
 	/**
@@ -141,9 +157,16 @@ class GistController extends ActionController {
 	 */
 	public function createAction(Gist $gist): ResponseInterface
 	{
-		$this->addFlashMessage(LocalizationUtility::translate('messages.created', 'fluidshare'));
 		$this->gistRepository->add($gist);
+		$this->persistenceManager->persistAll();
+		$this->submissionNotification->send($gist);
+		$this->addFlashMessage(LocalizationUtility::translate('messages.created', 'fluidshare'));
 		return $this->redirect('list');
+	}
+
+	protected function getErrorFlashMessage(): bool|string
+	{
+		return FALSE;
 	}
 
 	/**
