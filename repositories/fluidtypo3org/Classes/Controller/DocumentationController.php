@@ -50,10 +50,26 @@ final class DocumentationController extends ActionController
 
         $document = $this->documentationRepository->findDocument($route);
         if ($document !== null) {
-            $this->view->assignMultiple([
+            $viewVariables = [
                 'document' => $document,
                 'renderedMarkdown' => $this->markdownRenderer->render($document->getMarkdown(), $this->request),
-            ]);
+            ];
+
+            $parentRouteSegments = $route->getSegments();
+            array_pop($parentRouteSegments);
+            $documentFolder = $this->documentationRepository->findFolder(
+                DocumentationRoute::fromSegments(...$parentRouteSegments),
+            );
+            if (
+                $documentFolder !== null
+                && $documentFolder->getFolders()->isEmpty()
+                && count($documentFolder->getDocuments()) > 1
+            ) {
+                $viewVariables['documentFolder'] = $documentFolder;
+                $viewVariables['documentSiblings'] = $documentFolder->getDocuments();
+            }
+
+            $this->view->assignMultiple($viewVariables);
             return $this->htmlResponse();
         }
 

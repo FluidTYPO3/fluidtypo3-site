@@ -1,5 +1,52 @@
 <f:if condition="{document}">
     <f:then>
+        <f:if condition="{documentSiblings}">
+            <nav
+                class="documentation-sibling-navigation"
+                aria-label="Pages in {documentFolder.title}"
+            >
+                <ul class="documentation-sibling-list list-unstyled">
+                    <f:for each="{documentSiblings}" as="siblingDocument">
+                        <li>
+                            <f:if condition="{siblingDocument.slug} == {document.slug}">
+                                <f:then>
+                                    <span
+                                        class="documentation-sibling-chip documentation-sibling-chip-active"
+                                        aria-current="page"
+                                    >
+                                        <f:if condition="{siblingDocument.number}">
+                                            <span class="documentation-navigation-number">
+                                                {siblingDocument.number}
+                                            </span>
+                                        </f:if>
+                                        <span class="documentation-sibling-title">
+                                            {siblingDocument.title}
+                                        </span>
+                                    </span>
+                                </f:then>
+                                <f:else>
+                                    <f:link.action
+                                        action="detail"
+                                        arguments="{siblingDocument.route.arguments}"
+                                        class="documentation-sibling-chip"
+                                    >
+                                        <f:if condition="{siblingDocument.number}">
+                                            <span class="documentation-navigation-number">
+                                                {siblingDocument.number}
+                                            </span>
+                                        </f:if>
+                                        <span class="documentation-sibling-title">
+                                            {siblingDocument.title}
+                                        </span>
+                                    </f:link.action>
+                                </f:else>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </nav>
+        </f:if>
+
         <article class="documentation-detail">
             <div class="documentation-markdown">
                 <f:format.raw>{renderedMarkdown}</f:format.raw>
