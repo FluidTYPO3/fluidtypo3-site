@@ -107,7 +107,12 @@ class Gist extends AbstractEntity {
 	 * @return void
 	 */
 	public function setSummary($summary) {
-		$this->summary = $summary;
+		$paragraphs = preg_split('/\R/u', trim((string) $summary)) ?: array();
+		$paragraphs = array_values(array_filter(
+			array_map('trim', $paragraphs),
+			static fn($paragraph) => !self::isSummaryParagraphEmpty($paragraph)
+		));
+		$this->summary = implode("\n", $paragraphs);
 	}
 
 	/**
@@ -115,6 +120,24 @@ class Gist extends AbstractEntity {
 	 */
 	public function getSummary() {
 		return $this->summary;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSummaryFirstParagraph() {
+		$paragraphs = preg_split('/\R/u', (string) $this->summary) ?: array();
+		foreach ($paragraphs as $paragraph) {
+			if (!self::isSummaryParagraphEmpty($paragraph)) {
+				return trim($paragraph);
+			}
+		}
+		return '';
+	}
+
+	private static function isSummaryParagraphEmpty($paragraph) {
+		$plainText = html_entity_decode(strip_tags((string) $paragraph), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+		return '' === trim(str_replace("\u{00A0}", ' ', $plainText));
 	}
 
 	/**

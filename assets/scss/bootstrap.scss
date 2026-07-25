@@ -963,7 +963,9 @@ html[data-bs-theme="dark"] .site-brand-image-dark {
 }
 
 .library-example-card-body {
+    position: relative;
     padding: 1.25rem 1.25rem 1rem;
+    border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0;
 }
 
 .library-example-title {
@@ -972,20 +974,34 @@ html[data-bs-theme="dark"] .site-brand-image-dark {
 }
 
 .library-example-title a {
-    position: relative;
+    position: static;
     display: block;
     padding-right: 1.75rem;
     color: var(--bs-emphasis-color);
     text-decoration: none;
 }
 
+.library-example-title a::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+}
+
 .library-example-title a::after {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1.25rem;
+    right: 1.25rem;
     color: var(--bs-primary);
     content: "→";
     transition: transform 150ms ease;
+}
+
+.library-example-title a:focus-visible {
+    outline: 0;
+}
+
+.library-example-card-body:has(.library-example-title a:focus-visible) {
+    box-shadow: inset 0 0 0 0.15rem color-mix(in srgb, var(--bs-primary) 60%, transparent);
 }
 
 .library-example-card:hover .library-example-title a {
