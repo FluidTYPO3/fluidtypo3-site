@@ -52,7 +52,11 @@ final class DocumentationController extends ActionController
         if ($document !== null) {
             $viewVariables = [
                 'document' => $document,
-                'renderedMarkdown' => $this->markdownRenderer->render($document->getMarkdown(), $this->request),
+                'renderedMarkdown' => $this->markdownRenderer->render(
+                    $document->getMarkdown(),
+                    $this->request,
+                    $route,
+                ),
             ];
 
             $parentRouteSegments = $route->getSegments();
