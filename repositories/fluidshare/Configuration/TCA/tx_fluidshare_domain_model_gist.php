@@ -46,6 +46,7 @@ return array (
 					'config' =>
 						array (
 							'type' => 'select',
+							'renderType' => 'selectMultipleSideBySide',
 							'transform' => NULL,
 							'default' => NULL,
 							'size' => 5,
@@ -107,6 +108,7 @@ return array (
 					'config' =>
 						array (
 							'type' => 'select',
+							'renderType' => 'selectMultipleSideBySide',
 							'transform' => NULL,
 							'default' => NULL,
 							'size' => 5,
