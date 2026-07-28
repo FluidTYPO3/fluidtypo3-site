@@ -1,5 +1,13 @@
 # @import 'EXT:fluidshare/Configuration/TypoScript/setup.typoscript'
 
+page.headerData.10 = TEXT
+page.headerData.10.value (
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#06100f" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#030908" media="(prefers-color-scheme: dark)">
+)
+
 plugin.tx_fluidshare_display.persistence.storagePid = 2
 plugin.tx_fluidshare_detail.persistence.storagePid = 2
 plugin.tx_fluidshare_filter.persistence.storagePid = 2
