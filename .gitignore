@@ -2,6 +2,7 @@ node_modules/
 public/_assets/
 var/
 vendor/
-public/
+public/*
+!public/logo.svgz
 
 .env
